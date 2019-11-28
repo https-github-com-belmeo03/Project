@@ -1,6 +1,6 @@
 import cv2
 #reading the image 
-image = cv2.imread("code/asdf.png")
+image = cv2.imread("image.jpg")
 edged = cv2.Canny(image, 10, 250)
 # cv2.imshow("Edges", edged)
 # cv2.waitKey(0)
@@ -19,5 +19,5 @@ for c in cnts:
     peri = cv2.arcLength(c, True)
     approx = cv2.approxPolyDP(c, 0.02 * peri, True)
     cv2.drawContours(image, [approx], -1, (0, 255, 0), 4)
-cv2.imshow("Output"+str(idx), image)
+cv2.imshow("code"+str(idx), image)
 cv2.waitKey(0)

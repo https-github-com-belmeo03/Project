@@ -18,28 +18,28 @@ class fuction_image:
      
         return reduc_noise  
 
-    def detection(gray):
-        idx = gray
-        edged = cv2.Canny(gray, 10, 250)
-        # cv2.imshow("Edges", edged)
-        # cv2.waitKey(0)
+    # def detection(gray):
+    #     idx = gray
+    #     edged = cv2.Canny(gray, 10, 250)
+    #     # cv2.imshow("Edges", edged)
+    #     # cv2.waitKey(0)
         
-        #applying closing function 
-        kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
-        closed = cv2.morphologyEx(edged, cv2.MORPH_CLOSE, kernel)
-        # cv2.imshow("Closed", closed)
-        # cv2.waitKey(0)
+    #     #applying closing function 
+    #     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
+    #     closed = cv2.morphologyEx(edged, cv2.MORPH_CLOSE, kernel)
+    #     # cv2.imshow("Closed", closed)
+    #     # cv2.waitKey(0)
         
-        #finding_contours 
-        (cnts, _) = cv2.findContours(closed.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    #     #finding_contours 
+    #     (cnts, _) = cv2.findContours(closed.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
         
-        for c in cnts:
-            peri = cv2.arcLength(c, True)
-            approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-            cv2.drawContours(image, [approx], -1, (0, 255, 0), 
+    #     for c in cnts:
+    #         peri = cv2.arcLength(c, True)
+    #         approx = cv2.approxPolyDP(c, 0.02 * peri, True)
+    #         cv2.drawContours(image, [approx], -1, (0, 255, 0), 
 
 
-        return idx
+    #     return idx
 
 
     # def detection(gray):
@@ -72,14 +72,14 @@ class fuction_image:
 
 
 
-    image = cv2.imread("im2.jpg")
+    # image = cv2.imread("im2.jpg")
 
-    grayscale = gray_scale(image)
+    # grayscale = gray_scale(image)
 
     # binary = binary_image(grayscale)
 
     # noise2 = add_gaussian_noise(binary)
-    detec = detection(grayscale)
+    # detec = detection(grayscale)
     # cv2.imshow("asd",binary)
     # cv2.imshow("hb",noise2)
     # cv2.waitKey(0)
