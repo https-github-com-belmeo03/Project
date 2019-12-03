@@ -1,5 +1,7 @@
 import cv2 
-image = cv2.imread("code/img7.png")
+import numpy as np
+image = cv2.imread("box/img2.png")
+
 gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 edged = cv2.Canny(image, 10, 250)
 (cnts, _) = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -10,6 +12,6 @@ for c in cnts:
     if w>25 and h>25:
         idx+=1
         new_img=gray[y:y+h,x:x+w]
-        cv2.imwrite("code/img"+ str(idx) + '.png', new_img)
-# cv2.imshow("im",new_img)
+        cv2.imwrite("number/img"+ str(idx) + '.png', new_img)
+# cv2.imshow("fghjk",image)
 cv2.waitKey(0)

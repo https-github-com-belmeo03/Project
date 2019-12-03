@@ -50,4 +50,4 @@ while True:
 
 cam.release()
 
-cv2.destroyAllWindows()
+cv2.destroyAllWindows("a")

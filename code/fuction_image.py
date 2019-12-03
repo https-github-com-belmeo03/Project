@@ -72,17 +72,18 @@ class fuction_image:
 
 
 
-    # image = cv2.imread("im2.jpg")
+    image = cv2.imread("cap2.jpg")
 
-    # grayscale = gray_scale(image)
+    grayscale = gray_scale(image)
 
-    # binary = binary_image(grayscale)
+    binary = binary_image(grayscale)
 
     # noise2 = add_gaussian_noise(binary)
     # detec = detection(grayscale)
     # cv2.imshow("asd",binary)
+    cv2.imwrite("bi2"+".png",binary)
     # cv2.imshow("hb",noise2)
-    # cv2.waitKey(0)
+    cv2.waitKey(0)
 
 
 

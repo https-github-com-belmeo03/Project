@@ -28,8 +28,9 @@ def rotate_image(mat, angle):
     rotated_mat = cv2.warpAffine(mat, rotation_mat, (bound_w, bound_h))
     return rotated_mat
 
-image = cv2.imread("code/img3.png")
+image = cv2.imread("bi2.png")
 
-rot = rotate_image(image, -0.1)
+rot = rotate_image(image,-90)
 cv2.imshow("sad",rot)
+cv2.imwrite("rotation/rot"+".png",rot)
 cv2.waitKey(0)
