@@ -1,6 +1,6 @@
 import cv2
 #reading the image 
-image = cv2.imread("bi2.png")
+image = cv2.imread("box/img2.png")
 edged = cv2.Canny(image, 10, 250)
 # cv2.imshow("Edges", edged)
 # cv2.waitKey(0)

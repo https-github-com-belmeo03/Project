@@ -9,7 +9,7 @@ idx = 0
 for c in cnts:
     x,y,w,h = cv2.boundingRect(c)
     print( x,y,w,h)
-    if w>25 and h>25:
+    if w>25 and h>25 and w<70 and h<70:
         idx+=1
         new_img=gray[y:y+h,x:x+w]
         cv2.imwrite("number/img"+ str(idx) + '.png', new_img)
