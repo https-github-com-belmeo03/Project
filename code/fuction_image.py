@@ -16,58 +16,34 @@ class fuction_image:
         dst = cv2.fastNlMeansDenoising(image, None, 10, 10, 100) 
         reduc_noise = dst
      
-        return reduc_noise  
+        return reduc_noise 
+         
+    def rotate_image(mat, angle):
+        """
+        Rotates an image (angle in degrees) and expands image to avoid cropping
+        """
 
-    # def detection(gray):
-    #     idx = gray
-    #     edged = cv2.Canny(gray, 10, 250)
-    #     # cv2.imshow("Edges", edged)
-    #     # cv2.waitKey(0)
-        
-    #     #applying closing function 
-    #     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (7, 7))
-    #     closed = cv2.morphologyEx(edged, cv2.MORPH_CLOSE, kernel)
-    #     # cv2.imshow("Closed", closed)
-    #     # cv2.waitKey(0)
-        
-    #     #finding_contours 
-    #     (cnts, _) = cv2.findContours(closed.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        
-    #     for c in cnts:
-    #         peri = cv2.arcLength(c, True)
-    #         approx = cv2.approxPolyDP(c, 0.02 * peri, True)
-    #         cv2.drawContours(image, [approx], -1, (0, 255, 0), 
+        height, width = mat.shape[:2] # image shape has 3 dimensions
+        image_center = (width/2, height/2) # getRotationMatrix2D needs coordinates in reverse order (width, height) compared to shape
 
+        rotation_mat = cv2.getRotationMatrix2D(image_center, angle, 1.)
 
-    #     return idx
+        # rotation calculates the cos and sin, taking absolutes of those.
+        abs_cos = abs(rotation_mat[0,0]) 
+        abs_sin = abs(rotation_mat[0,1])
 
+        # find the new width and height bounds
+        bound_w = int(height * abs_sin + width * abs_cos)
+        bound_h = int(height * abs_cos + width * abs_sin)
 
-    # def detection(gray):
-        
-    #     retval, thresh_gray = cv2.threshold(gray, thresh=160, maxval=255,type=cv2.THRESH_BINARY_INV)
-        
-    #     contours, hierarchy = cv2.findContours(thresh_gray,cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-    #     print(contours)
+        # subtract old image center (bringing image back to origo) and adding the new image center coordinates
+        rotation_mat[0, 2] += bound_w/2 - image_center[0]
+        rotation_mat[1, 2] += bound_h/2 - image_center[1]
 
-
-
-    #     # mx = (0,0,0,0)      # biggest bounding box so far
-    #     # mx_area = 0
-    #     # for cont in contours:
-    #     #     x,y,w,h = cv2.boundingRect(cont)
-    #     #     x, y, w, h = x-40, y-40, w+80,h+80 # make the bounding box a bit bigger
-    #     #     area = w*h
-    #     #     if area > mx_area:
-    #     #         mx = x,y,w,h
-    #     #         mx_area = area
-    #     # x,y,w,h = mx
-
-    #     # # Output to files
-    #     # roi=img[y:y+h,x:x+w]
-
-    #     # dec = roi
-
-    #     return dec
+        # rotate image with the new bounds and translated rotation matrix
+        rotated_mat = cv2.warpAffine(mat, rotation_mat, (bound_w, bound_h))
+        return rotated_mat
+  
         
 
 
