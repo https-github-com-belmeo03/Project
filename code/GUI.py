@@ -21,9 +21,11 @@ except ImportError:
     py3 = True
 
 import GUI_support
-# from .cap import fuction_cap
-import cap 
 
+from PIL import ImageTk,Image
+import fuction_image 
+def img2():
+        box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
 
 
 def vp_start_gui():
@@ -43,6 +45,7 @@ def create_Toplevel1(root, *args, **kwargs):
     top = Toplevel1 (w)
     GUI_support.init(w, top, *args, **kwargs)
     return (w, top)
+
 def frame_cap():
 
         cam = cv2.VideoCapture(0)
@@ -159,6 +162,10 @@ class Toplevel1:
         self.Labelframe1.configure(foreground="black")
         self.Labelframe1.configure(text='''Image''')
         self.Labelframe1.configure(background="#d9d9d9")
+        self.Labelframe1.configure(background="#d9d9d9")
+        # self.Labelframe1.configure(command=img2)
+     
+        
 
         self.Labelframe2 = tk.LabelFrame(top)
         self.Labelframe2.place(relx=0.025, rely=0.39, relheight=0.263

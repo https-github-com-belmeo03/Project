@@ -1,7 +1,7 @@
 import cv2 
 import numpy as np
 
-image = cv2.imread("box/img2.png")
+image = cv2.imread("box/img1.png")
 # arr = []
 gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 edged = cv2.Canny(image, 10, 250)

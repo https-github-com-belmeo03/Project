@@ -9,7 +9,7 @@ idx = 0
 for c in cnts:
     x,y,w,h = cv2.boundingRect(c)
     print( x,y,w,h)
-    if w>200 and h>200:
+    if w>200 and h>200 and w<1000 and h<700:
         idx+=1
         new_img=gray[y:y+h,x:x+w]
         cv2.imwrite("box/img"+ str(idx) + '.png', new_img)
