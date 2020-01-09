@@ -4,7 +4,9 @@ import numpy as np
 cam = cv2.VideoCapture(0)
 cv2.namedWindow("test")
 img_counter = 0
-
+cam.set(3,1080)
+cam.set(4,800)
+cam.set(15,0.1)
 # def frame_cap():
 while True:
     ret, frame = cam.read()
@@ -19,6 +21,7 @@ while True:
 
     gray1 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     th1 = cv2.adaptiveThreshold(gray1, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 115, 40)
+
     cv2.imshow("test1", th1) #เอาไว้ดูวิดิโอที่เป็น binary
 
     if not ret:
