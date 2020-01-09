@@ -347,14 +347,14 @@ for i in range (0,arrayList.__len__()-1,+1):
     imarrayNew = arrayList[i][0:h, 0:w]
     #print(imarrayNew)
 
-    with np.load('knn_data.npz') as data:
-        #print(data.files)
+    with np.load('knn_data2.npz') as data:
+        print(data)
         train = data['train']
         train_labels = data['train_labels']
-
+ 
 
     knn = cv2.ml.KNearest_create()
-    knn.train(train, cv2.ml.ROW_SAMPLE, train_labels)
+    knn.train(train, cv2.ml.ROW_SAMPLE, train_labels) 
 
     #test_img = cv2.imread(imarrayNew)
     #count_num = count_num + 1
@@ -367,7 +367,7 @@ for i in range (0,arrayList.__len__()-1,+1):
     x = np.array(test_img3)
     test_img4 = x.reshape(-1, 400).astype(np.float32)
     ret, result, neighbours, dist = knn.findNearest(test_img4, k=3)
-    print(int(result))
+    # print(int(result))
 
     #arrayList.append(int(result))
     getNumberRasp.append(int(result))
@@ -377,8 +377,8 @@ for i in range (0,arrayList.__len__()-1,+1):
 
 
 
-file = open("code.txt", "w")
-for i_r in range(0,getNumberRasp.__len__(),+1):
- print("get "+str(i_r)+"1", getNumberRasp[i_r])
- file.write(str(getNumberRasp[i_r])+",")
+# file = open("code.txt", "w")
+# for i_r in range(0,getNumberRasp.__len__(),+1):
+#  print("get "+str(i_r)+"1", getNumberRasp[i_r])
+#  file.write(str(getNumberRasp[i_r])+",")
 cv2.waitKey(0)

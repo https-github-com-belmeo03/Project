@@ -1,7 +1,7 @@
 from PIL import Image
 import numpy as np
 import cv2
-"""""""""
+
 #from matplotlib import pyplot as plt
 
 w, h = 20, 20
@@ -44,8 +44,8 @@ accuracy = correct*100.0/result.size
 print (accuracy)
 
 # save the data
-#np.savez('knn_data.npz',train=train, train_labels=train_labels)
-"""
+np.savez('knn_data.npz',train=train, train_labels=train_labels)
+
 
 
 # Now load the data
@@ -53,7 +53,7 @@ with np.load('knn_data.npz') as data:
     #print (data.files)
     train = data['train']
     train_labels = data['train_labels']
-
+# print(train_labels[10])
 arrayList = []
 count = 1
 count_num = 0

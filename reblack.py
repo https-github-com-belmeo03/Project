@@ -2,7 +2,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread("1111.png")
+img = cv2.imread("test2.png")
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 (thresh, Img_First) = cv2.threshold(gray, 140, 255, cv2.THRESH_BINARY)
 #cv2.imshow("imaB",Img_First)
