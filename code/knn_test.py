@@ -16,7 +16,7 @@ mnist = datasets.load_digits()
 (trainData, valData, trainLabels, valLabels) = train_test_split(trainData, trainLabels, test_size=0.1, random_state=84) #ข้อมูลไฟล์ train แต่ดึงรูปมาจาก test อีกที
 cc = testData.astype("uint8")
 # cv2.imshow("cc", cc)
-model = KNeighborsClassifier(n_neighbors=1) #คำนวณ KNN
+model = KNeighborsClassifier(n_neighbors=3) #คำนวณ KNN
 model.fit(trainData, trainLabels) #set ข้อมูล train
 # print("step1 testData : ", testData)
 
@@ -24,7 +24,7 @@ model.fit(trainData, trainLabels) #set ข้อมูล train
 
 # for i in np.random.randint(0, high=len(testLabels), size=(1,)): # loop เพื่อ วนหารูปที่จะมา test เฉยๆ
 
-img= cv2.imread("0000.png")
+img= cv2.imread("temp/222.png")
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 (thresh, Img_First) = cv2.threshold(gray, 140, 255, cv2.THRESH_BINARY)
 ima = cv2.resize(Img_First,(8,8))
