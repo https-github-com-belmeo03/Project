@@ -66,6 +66,7 @@ model.fit(x_train, y_train,
           epochs=5,
           verbose=1,
           validation_data=(x_test, y_test));
+model.save('final_model2.h5py')
 
 
 
@@ -76,18 +77,19 @@ print('Test accuracy:', score[1])
 # plt.imshow(x_test[500,:,:,0]);
 
 
-img= cv2.imread("temp/222.png")
+img= cv2.imread("temp/img0.png")
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 (thresh, Img_First) = cv2.threshold(gray, 140, 255, cv2.THRESH_BINARY)
 ima = cv2.resize(Img_First,(28,28))
 w ,h= ima.shape
 ima2 = ima.reshape(1, w, h, 1)
 plt.imshow(ima);
-print(ima2)
+print(ima)
 
 
 print(h, w)
 # ตรวจภาพ
+
 guesses = model.predict_classes(ima2)
 
 print(guesses)

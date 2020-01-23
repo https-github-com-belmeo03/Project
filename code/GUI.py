@@ -7,6 +7,7 @@
 
 import sys
 import cv2
+import cap as cp
 
 try:
     import Tkinter as tk
@@ -23,9 +24,13 @@ except ImportError:
 import GUI_support
 
 from PIL import ImageTk,Image
-import fuction_image 
-def img2():
-        box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
+import fuction_image as fmate
+import cnn_save as cnn
+# import Project.code.cap as Camera
+
+
+# def img2():
+#         box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
 
 
 def vp_start_gui():
@@ -46,56 +51,7 @@ def create_Toplevel1(root, *args, **kwargs):
     GUI_support.init(w, top, *args, **kwargs)
     return (w, top)
 
-def frame_cap():
 
-        cam = cv2.VideoCapture(0)
-        cv2.namedWindow("test")
-        img_counter = 0
-
-
-        while True:
-                ret, frame = cam.read()
-                ret, fr = cam.read()
-
-                cv2.line(fr , (0, 220), (800, 220), (255, 0, 0), 2)
-                cv2.line(fr, (0, 260), (800, 260), (0, 255, 0), 2)
-
-                cv2.line(fr, (290, 0), (290, 800), (255, 0, 0), 2)
-                cv2.line(fr, (335, 0), (335, 800), (0, 255, 0), 2)
-                cv2.imshow("test", fr)
-
-                gray1 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-                th1 = cv2.adaptiveThreshold(gray1, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 115, 40)
-                cv2.imshow("test1", th1) #เอาไว้ดูวิดิโอที่เป็น binary
-
-                if not ret:
-                        break
-
-                k = cv2.waitKey(1)
-
-                if k%256 == 27:
-                        # ESC pressed
-                        print("Escape hit, closing...")
-                        break
-
-
-                elif k%256 == ord('z'):
-                        img_name = "opencv_frame_{}.png"
-                        cv2.imwrite(img_name, frame)
-                        img = cv2.imread(img_name)
-                        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-                        th = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 115, 40)
-                        #Imgcut = th[220:260, 290:335]
-                        cv2.imwrite("BinaryS21.png", th)
-                        cv2.imshow('Adaptive threshold', th)
-                        #print("{} written!".format(img_name))
-                        img_counter += 1
-
-
-
-        cam.release()
-
-        cv2.destroyAllWindows()
 
 def mHello():
         print("Hello World")
@@ -141,7 +97,7 @@ class Toplevel1:
         self.CButton.configure(highlightcolor="black")
         self.CButton.configure(pady="0")
         self.CButton.configure(text='Camera')
-        self.CButton.configure(command=frame_cap)
+        self.CButton.configure(command=cp.frame_cap)
 
         self.CapButton = tk.Button(top)
         self.CapButton.place(relx=0.864, rely=0.195, height=34, width=77)
@@ -154,6 +110,10 @@ class Toplevel1:
         self.CapButton.configure(highlightcolor="black")
         self.CapButton.configure(pady="0")
         self.CapButton.configure(text='''Capture''')
+        self.CapButton.configure(command=lambda:fmate.Process_paper())
+        
+      
+
 
         self.Labelframe1 = tk.LabelFrame(top)
         self.Labelframe1.place(relx=0.025, rely=0.019, relheight=0.341
@@ -163,8 +123,8 @@ class Toplevel1:
         self.Labelframe1.configure(text='''Image''')
         self.Labelframe1.configure(background="#d9d9d9")
         self.Labelframe1.configure(background="#d9d9d9")
-        # self.Labelframe1.configure(command=img2)
-     
+        # self.Labelframe1.configure(command=lambda:fmate.fuction_image.readImage())
+      
         
 
         self.Labelframe2 = tk.LabelFrame(top)
@@ -284,7 +244,8 @@ class Toplevel1:
         self.Button1.configure(highlightbackground="#d9d9d9")
         self.Button1.configure(highlightcolor="black")
         self.Button1.configure(pady="0")
-        self.Button1.configure(text='''Action''')
+        self.Button1.configure(text='''Train''')
+        self.Button1.configure(command=lambda:cnn.run_test_harness() )
 
         self.Button2 = tk.Button(self.Labelframe2)
         self.Button2.place(relx=0.877, rely=0.519, height=34, width=67
@@ -486,7 +447,7 @@ class Toplevel1:
 if __name__ == '__main__':
     vp_start_gui()
 
-
+    
 
 
 
