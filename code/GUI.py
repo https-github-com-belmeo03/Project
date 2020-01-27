@@ -32,10 +32,13 @@ from tkinter import *
 
 # def img2():
 #         box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
-def number(array):
-        print(array)
-        number_array = array
-        return number_array
+# def number():
+#         num_test = nb.run_example()
+        
+#         print(num_test[0])
+        # self.Text1.configure(Text="1")
+        # number_array = array
+        # return number_array
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -65,14 +68,48 @@ def destroy_Toplevel1():
     w.destroy()
     w = None
 
-def load_image():
-        my_img=PhotoImage(file='box/img1.png')
-        # canvas.create_image(20,20, anchor=NW, image=my_img)
-        # photo = ImageTk.PhotoImage(my_img)
-        return my_img
+# def eventCapButton(self):
+#         print("eventCapButton")
+#         self.videopanel.pack()
+#         self.capImg = ImageTk.PhotoImage(Image.open("img1.png"))
+#         self.videopanel.configure(image=self.capImg)
     
 
 class Toplevel1:
+    def num(self):
+        # count=0
+        num_test = nb.run_example()
+        # self.Canvasframe1.create_image(Image.open("box/img1.png"))
+        if len(num_test) == 13:
+
+                self.Text1.insert(tk.END,num_test[0])
+                self.Text1_14.insert(tk.END,num_test[1])
+                self.Text1_15.insert(tk.END,num_test[2])
+                self.Text1_16.insert(tk.END,num_test[3])
+                self.Text1_17.insert(tk.END,num_test[4])
+                self.Text1_18.insert(tk.END,num_test[5])
+                self.Text1_19.insert(tk.END,num_test[6])
+                self.Text1_20.insert(tk.END,num_test[7])
+                self.Text1_21.insert(tk.END,num_test[8])
+                self.Text1_22.insert(tk.END,num_test[9])
+                self.Text1_23.insert(tk.END,num_test[10])
+                self.Text1_24.insert(tk.END,num_test[11])
+                self.Text1_25.insert(tk.END,num_test[12])
+        else:
+                self.Text1.insert(tk.END,num_test[0])
+                self.Text1_14.insert(tk.END,num_test[1])
+                self.Text1_15.insert(tk.END,num_test[2])
+                self.Text1_16.insert(tk.END,num_test[3])
+                self.Text1_17.insert(tk.END,num_test[4])
+                self.Text1_18.insert(tk.END,num_test[5])
+                self.Text1_19.insert(tk.END,num_test[6])
+                self.Text1_20.insert(tk.END,num_test[7])
+                self.Text1_21.insert(tk.END,num_test[8])
+                self.Text1_22.insert(tk.END,num_test[9])
+                self.Text1_23.insert(tk.END,num_test[10])
+                self.Text1_24.insert(tk.END,num_test[11])
+        # print(num_test)    
+    
     def __init__(self, top=None):
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
@@ -124,7 +161,7 @@ class Toplevel1:
         self.CapButton.configure(command=lambda:fmate.Process_paper())
 
         
-      
+   
 
 
         # self.Labelframe1 = tk.LabelFrame(top)
@@ -146,7 +183,7 @@ class Toplevel1:
         # self.Canvasframe1.configure(text="Image")
         self.Canvasframe1.configure(background="#d9d9d9")
         # self.Canvasframe1.configure(image=load_image())
-        self.Canvasframe1.create_image(0, 0, image=load_image(),anchor=NW)
+        # self.Canvasframe1.create_image(0, 0, image=eventCapButton(self),anchor=NW)
       
         
 
@@ -282,10 +319,11 @@ class Toplevel1:
         self.Button2.configure(highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''Process''')
-        self.Button2.configure(command=lambda:number(nb.run_example()))
+        self.Button2.configure(command=lambda:self.num())
 
+        # print(num_test)
+        # print(nb.run_example())
 
-        print(nb.run_example())
 
         self.Text1 = tk.Text(self.Labelframe2)
         self.Text1.place(relx=0.015, rely=0.519, relheight=0.178, relwidth=0.052
