@@ -14,8 +14,8 @@ def load_image(filename):
 			# cv2.imshow("asf",filename[i])
 			# cv2.waitKey(0)
 		# print(filename[1])
-			plt.imshow(filename[i]);
-			plt.show()
+			# plt.imshow(filename[i]);
+			# plt.show()
 			# gray3 = cv2.cvtColor(filename[i],cv2.COLOR_BGR2GRAY)
 			(thresh, Img_First) = cv2.threshold(filename[i], 140, 255, cv2.THRESH_BINARY)
 			img = cv2.resize(Img_First,(28,28))
@@ -35,10 +35,11 @@ def load_image(filename):
  
 # load an image and predict the class
 def run_example():
+	count_number=[]
 	# load the image
 	# model = load_model('final_model2.h5py')
 	img = load_image(fmate.Process_paper())
-	model = load_model('final_model2.h5py')
+	model = load_model('final_model.h5py')
 	# for k in range (0,img.__len__(),+1):
 		# img2 = img[k].reshape(1, 28, 28, -1)
 		# print(img2)
@@ -53,9 +54,12 @@ def run_example():
 	
 	for i in range (0,img.__len__(),+1):
 		digit = model.predict_classes(img[i])
-		print(digit)
+		# print(digit)
 		# plt.imshow(img[i]);
- 
+		count_number.append(int(digit))
+	return count_number
 # entry point, run the example
+# print(run_example())
+# csv = run_example()
 
-run_example()
+# print(csv[0])

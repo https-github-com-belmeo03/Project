@@ -52,7 +52,7 @@ def frame_cap():
 
 	cam.release()
 
-	cv2.destroyAllWindows()
+cv2.destroyAllWindows()
 
 # fuction_cap()
 

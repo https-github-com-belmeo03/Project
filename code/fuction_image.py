@@ -6,7 +6,7 @@ def readImage ():
     image3 = cv2.imread("box/img1.png")
     # print(image3)
     cv2.imshow("sd",image3)
-    # cv2.waitKey(0)
+    cv2.waitKey(0)
     # ia = image3
     # return ia
 
@@ -143,25 +143,23 @@ def tem_size(gray):
         for i in range(0,h,+1):
             for j in range(0,w,+1):
                 backgroundImg[i][j]=Img_First[i][j]
-        # h1,w1 = backgroundImg.shape
-        # print(h1,w1)
-        cv2.imwrite("temp/img"+ str(k) + '.png', backgroundImg)
-        array_size.append(backgroundImg)
-    # cv2.imshow("da",gray)
-    # gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
-    # grays=gray
-    # 
         
-    # backgroundImg = np.zeros((30, 30), dtype=np.uint8)
-    
-    # for i in range(0,h,+1):
-    #     for j in range(0,w,+1):
-    #         backgroundImg[i][j]=grays[i][j]
-    
-    # # tem_img = backgroundImg
+        # cv2.imwrite("temp/img"+ str(k) + '.png', backgroundImg)
+        array_size.append(backgroundImg)
+ 
 
     return array_size
 
+def erosion(image):
+    array_erode=[]
+    for i in range (0,image.__len__(),+1):
+        Img_First = image[i]
+        kernel = np.ones((2,2),np.uint8)
+        img_erosion = cv2.erode(Img_First, kernel, iterations=1) 
+        array_erode.append(img_erosion)
+    return array_erode
+        
+      
 
 def Process_paper():
     image = cv2.imread("cap2.jpg")
@@ -178,9 +176,10 @@ def Process_paper():
     cut_fram = frame_detail(number)
     image_black=reblack(cut_fram)
     temp_size = tem_size(image_black)
+    erode = erosion(temp_size)
     
 
-    # print(temp_size)
+    # print(erode)
     # noise2 = add_gaussian_noise(binary)
     # detec = detection(grayscale)
     # cv2.imshow("asd",binary)
@@ -189,10 +188,10 @@ def Process_paper():
     # cv2.waitKey(0)
     # plt.imshow(image_black)
     # plt.show()
-    return temp_size
+    return erode
 
 
-Process_paper()
+# Process_paper()
 # print(Process_paper())
 
 

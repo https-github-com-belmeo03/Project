@@ -26,8 +26,9 @@ import GUI_support
 from PIL import ImageTk,Image
 import fuction_image as fmate
 import cnn_save as cnn
+import test_number as nb
 # import Project.code.cap as Camera
-
+from tkinter import *
 
 # def img2():
 #         box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
@@ -60,6 +61,13 @@ def destroy_Toplevel1():
     global w
     w.destroy()
     w = None
+
+def load_image():
+        my_img=PhotoImage(file='box/img1.png')
+        # canvas.create_image(20,20, anchor=NW, image=my_img)
+        # photo = ImageTk.PhotoImage(my_img)
+        return my_img
+    
 
 class Toplevel1:
     def __init__(self, top=None):
@@ -97,7 +105,7 @@ class Toplevel1:
         self.CButton.configure(highlightcolor="black")
         self.CButton.configure(pady="0")
         self.CButton.configure(text='Camera')
-        self.CButton.configure(command=cp.frame_cap)
+        self.CButton.configure(command=lambda:cp.frame_cap())
 
         self.CapButton = tk.Button(top)
         self.CapButton.place(relx=0.864, rely=0.195, height=34, width=77)
@@ -111,19 +119,31 @@ class Toplevel1:
         self.CapButton.configure(pady="0")
         self.CapButton.configure(text='''Capture''')
         self.CapButton.configure(command=lambda:fmate.Process_paper())
+
         
       
 
 
-        self.Labelframe1 = tk.LabelFrame(top)
-        self.Labelframe1.place(relx=0.025, rely=0.019, relheight=0.341
+        # self.Labelframe1 = tk.LabelFrame(top)
+        # self.Labelframe1.place(relx=0.025, rely=0.019, relheight=0.341
+        #         , relwidth=0.802)
+        # self.Labelframe1.configure(relief='groove')
+        # self.Labelframe1.configure(foreground="black")
+        # self.Labelframe1.configure(text='''Image''')
+        # self.Labelframe1.configure(background="#d9d9d9")
+        # self.Labelframe1.configure(background="#d9d9d9")
+        # self.Labelframe1.configure(image=load_image())
+        # self.Labelframe1.configure(image=load_image())
+        # self.Labelframe1.configure(command=lambda:fmate.readImage())
+        self.Canvasframe1 = tk.Canvas(top)
+        self.Canvasframe1.place(relx=0.025, rely=0.019, relheight=0.341
                 , relwidth=0.802)
-        self.Labelframe1.configure(relief='groove')
-        self.Labelframe1.configure(foreground="black")
-        self.Labelframe1.configure(text='''Image''')
-        self.Labelframe1.configure(background="#d9d9d9")
-        self.Labelframe1.configure(background="#d9d9d9")
-        # self.Labelframe1.configure(command=lambda:fmate.fuction_image.readImage())
+        self.Canvasframe1.configure(relief='groove')
+        # self.Canvasframe1.configure(foreground="black")
+        # self.Canvasframe1.configure(text="Image")
+        self.Canvasframe1.configure(background="#d9d9d9")
+        # self.Canvasframe1.configure(image=load_image())
+        self.Canvasframe1.create_image(0, 0, image=load_image(),anchor=NW)
       
         
 
@@ -245,7 +265,7 @@ class Toplevel1:
         self.Button1.configure(highlightcolor="black")
         self.Button1.configure(pady="0")
         self.Button1.configure(text='''Train''')
-        self.Button1.configure(command=lambda:cnn.run_test_harness() )
+        # self.Button1.configure(command=lambda:cnn.run_test_harness())
 
         self.Button2 = tk.Button(self.Labelframe2)
         self.Button2.place(relx=0.877, rely=0.519, height=34, width=67
@@ -259,6 +279,7 @@ class Toplevel1:
         self.Button2.configure(highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''Process''')
+        self.Button2.configure(command=lambda:nb.run_example())
 
         self.Text1 = tk.Text(self.Labelframe2)
         self.Text1.place(relx=0.015, rely=0.519, relheight=0.178, relwidth=0.052
@@ -273,6 +294,7 @@ class Toplevel1:
         self.Text1.configure(selectforeground="black")
         self.Text1.configure(undo="1")
         self.Text1.configure(wrap="word")
+        # self.Text1.configure()
 
         self.Text1_14 = tk.Text(self.Labelframe2)
         self.Text1_14.place(relx=0.077, rely=0.519, relheight=0.178
