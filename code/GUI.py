@@ -32,7 +32,10 @@ from tkinter import *
 
 # def img2():
 #         box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
-
+def number(array):
+        print(array)
+        number_array = array
+        return number_array
 
 def vp_start_gui():
     '''Starting point when module is the main routine.'''
@@ -279,7 +282,10 @@ class Toplevel1:
         self.Button2.configure(highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''Process''')
-        self.Button2.configure(command=lambda:nb.run_example())
+        self.Button2.configure(command=lambda:number(nb.run_example()))
+
+
+        print(nb.run_example())
 
         self.Text1 = tk.Text(self.Labelframe2)
         self.Text1.place(relx=0.015, rely=0.519, relheight=0.178, relwidth=0.052
