@@ -24,11 +24,13 @@ except ImportError:
 import GUI_support
 
 from PIL import ImageTk,Image
+import PIL
+
 import fuction_image as fmate
 import cnn_save as cnn
 import test_number as nb
 # import Project.code.cap as Camera
-from tkinter import *
+# from tkinter import 
 
 # def img2():
 #         box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
@@ -76,10 +78,23 @@ def destroy_Toplevel1():
     
 
 class Toplevel1:
+    def Canvas_image(self):
+        image_show= fmate.Process_paper()
+        #     print(1)
+        # self.TFrame1_1.pack()
+        # self.videopanel.pack()
+        self.my_img=ImageTk.PhotoImage(Image.open("box/img1.png"))
+  
+
+        self.videopanel.configure(image=self.my_img)
+        # self.videopanel1.configure(image=image_show[0])
+        self.num()
+    
     def num(self):
         # count=0
+        # image_show= fmate.Process_paper()
         num_test = nb.run_example()
-        # self.Canvasframe1.create_image(Image.open("box/img1.png"))
+        # self.Canvasframe1.create_image(0,0,anchor=NE,image=image_show[0])
         if len(num_test) == 13:
 
                 self.Text1.insert(tk.END,num_test[0])
@@ -164,24 +179,24 @@ class Toplevel1:
    
 
 
-        # self.Labelframe1 = tk.LabelFrame(top)
-        # self.Labelframe1.place(relx=0.025, rely=0.019, relheight=0.341
-        #         , relwidth=0.802)
-        # self.Labelframe1.configure(relief='groove')
-        # self.Labelframe1.configure(foreground="black")
-        # self.Labelframe1.configure(text='''Image''')
-        # self.Labelframe1.configure(background="#d9d9d9")
-        # self.Labelframe1.configure(background="#d9d9d9")
-        # self.Labelframe1.configure(image=load_image())
-        # self.Labelframe1.configure(image=load_image())
-        # self.Labelframe1.configure(command=lambda:fmate.readImage())
-        self.Canvasframe1 = tk.Canvas(top)
-        self.Canvasframe1.place(relx=0.025, rely=0.019, relheight=0.341
+        self.videopanel = tk.Label(top)
+        self.videopanel.place(relx=0.025, rely=0.019, relheight=0.341
                 , relwidth=0.802)
-        self.Canvasframe1.configure(relief='groove')
-        # self.Canvasframe1.configure(foreground="black")
-        # self.Canvasframe1.configure(text="Image")
-        self.Canvasframe1.configure(background="#d9d9d9")
+        self.videopanel.configure(relief='groove')
+        self.videopanel.configure(foreground="black")
+        # self.videopanel.configure(text='''Image''')
+        # self.videopanel.configure(background="#d9d9d9")
+        # self.videopanel.configure(background="#d9d9d9")
+        # self.videopanel.configure(image=load_image())
+        # self.videopanel.configure(image=load_image())
+        # self.videopanel.configure(command=lambda:fmate.readImage())
+        # self.Canvasframe1 = tk.Canvas(top)
+        # self.Canvasframe1.place(relx=0.025, rely=0.019, relheight=0.341
+        #         , relwidth=0.802)
+        # self.Canvasframe1.configure(relief='groove')
+        # # self.Canvasframe1.configure(foreground="black")
+        # # self.Canvasframe1.configure(text="Image")
+        # self.Canvasframe1.configure(background="#d9d9d9")
         # self.Canvasframe1.configure(image=load_image())
         # self.Canvasframe1.create_image(0, 0, image=eventCapButton(self),anchor=NW)
       
@@ -195,103 +210,101 @@ class Toplevel1:
         self.Labelframe2.configure(text='''HCR''')
         self.Labelframe2.configure(background="#d9d9d9")
 
-        self.TFrame1 = ttk.Frame(self.Labelframe2)
-        self.TFrame1.place(relx=0.015, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1.configure(relief='groove')
-        self.TFrame1.configure(borderwidth="2")
-        self.TFrame1.configure(relief="groove")
 
-        self.TFrame1_1 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_1.place(relx=0.077, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_1.configure(relief='groove')
-        self.TFrame1_1.configure(borderwidth="2")
-        self.TFrame1_1.configure(relief="groove")
+        self.videopanel1 = tk.Label(self.Labelframe2)
+        self.videopanel1.place(relx=0.015, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel1.configure(background="#d9d9d9")
+        self.videopanel1.configure(borderwidth="2")
+        self.videopanel1.configure(relief="ridge")
 
-        self.TFrame1_2 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_2.place(relx=0.138, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_2.configure(relief='groove')
-        self.TFrame1_2.configure(borderwidth="2")
-        self.TFrame1_2.configure(relief="groove")
+        self.videopanel2 = tk.Label(self.Labelframe2)
+        self.videopanel2.place(relx=0.077, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel2.configure(background="#d9d9d9")
+        self.videopanel2.configure(borderwidth="2")
+        self.videopanel2.configure(relief="ridge")
 
-        self.TFrame1_3 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_3.place(relx=0.2, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_3.configure(relief='groove')
-        self.TFrame1_3.configure(borderwidth="2")
-        self.TFrame1_3.configure(relief="groove")
+        self.videopanel3 = tk.Label(self.Labelframe2)
+        self.videopanel3.place(relx=0.138, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel3.configure(background="#d9d9d9")
+        self.videopanel3.configure(borderwidth="2")
+        self.videopanel3.configure(relief="ridge")
 
-        self.TFrame1_4 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_4.place(relx=0.262, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_4.configure(relief='groove')
-        self.TFrame1_4.configure(borderwidth="2")
-        self.TFrame1_4.configure(relief="groove")
+        self.videopanel4 = tk.Label(self.Labelframe2)
+        self.videopanel4.place(relx=0.2, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel4.configure(background="#d9d9d9")
+        self.videopanel4.configure(borderwidth="2")
+        self.videopanel4.configure(relief="ridge")
 
-        self.TFrame1_5 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_5.place(relx=0.323, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_5.configure(relief='groove')
-        self.TFrame1_5.configure(borderwidth="2")
-        self.TFrame1_5.configure(relief="groove")
+        self.videopanel5 = tk.Label(self.Labelframe2)
+        self.videopanel5.place(relx=0.262, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel5.configure(background="#d9d9d9")
+        self.videopanel5.configure(borderwidth="2")
+        self.videopanel5.configure(relief="ridge")
 
-        self.TFrame1_6 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_6.place(relx=0.385, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_6.configure(relief='groove')
-        self.TFrame1_6.configure(borderwidth="2")
-        self.TFrame1_6.configure(relief="groove")
+        self.videopanel6 = tk.Label(self.Labelframe2)
+        self.videopanel6.place(relx=0.323, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel6.configure(background="#d9d9d9")
+        self.videopanel6.configure(borderwidth="2")
+        self.videopanel6.configure(relief="ridge")
 
-        self.TFrame1_7 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_7.place(relx=0.446, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_7.configure(relief='groove')
-        self.TFrame1_7.configure(borderwidth="2")
-        self.TFrame1_7.configure(relief="groove")
+        self.videopanel7 = tk.Label(self.Labelframe2)
+        self.videopanel7.place(relx=0.385, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel7.configure(background="#d9d9d9")
+        self.videopanel7.configure(borderwidth="2")
+        self.videopanel7.configure(relief="ridge")
 
-        self.TFrame1_8 = ttk.Frame(self.TFrame1_7)
-        self.TFrame1_8.place(relx=8.857, rely=1.111, relheight=1.0, relwidth=1.0)
+        self.videopanel8 = tk.Label(self.Labelframe2)
+        self.videopanel8.place(relx=0.446, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel8.configure(background="#d9d9d9")
+        self.videopanel8.configure(borderwidth="2")
+        self.videopanel8.configure(relief="ridge")
 
-        self.TFrame1_8.configure(relief='groove')
-        self.TFrame1_8.configure(borderwidth="2")
-        self.TFrame1_8.configure(relief="groove")
+        self.videopanel9 = tk.Label(self.Labelframe2)
+        self.videopanel9.place(relx=0.508, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel9.configure(background="#d9d9d9")
+        self.videopanel9.configure(borderwidth="2")
+        self.videopanel9.configure(relief="ridge")
 
-        self.TFrame1_9 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_9.place(relx=0.508, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_9.configure(relief='groove')
-        self.TFrame1_9.configure(borderwidth="2")
-        self.TFrame1_9.configure(relief="groove")
+        self.videopanel10 = tk.Label(self.Labelframe2)
+        self.videopanel10.place(relx=0.569, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel10.configure(background="#d9d9d9")
+        self.videopanel10.configure(borderwidth="2")
+        self.videopanel10.configure(relief="ridge")
 
-        self.TFrame1_10 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_10.place(relx=0.569, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_10.configure(relief='groove')
-        self.TFrame1_10.configure(borderwidth="2")
-        self.TFrame1_10.configure(relief="groove")
+        self.videopanel11 = tk.Label(self.Labelframe2)
+        self.videopanel11.place(relx=0.631, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel11.configure(background="#d9d9d9")
+        self.videopanel11.configure(borderwidth="2")
+        self.videopanel11.configure(relief="ridge")
 
-        self.TFrame1_11 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_11.place(relx=0.631, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_11.configure(relief='groove')
-        self.TFrame1_11.configure(borderwidth="2")
-        self.TFrame1_11.configure(relief="groove")
+        self.videopanel12 = tk.Label(self.Labelframe2)
+        self.videopanel12.place(relx=0.692, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel12.configure(background="#d9d9d9")
+        self.videopanel12.configure(borderwidth="2")
+        self.videopanel12.configure(relief="ridge")
 
-        self.TFrame1_12 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_12.place(relx=0.692, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_12.configure(relief='groove')
-        self.TFrame1_12.configure(borderwidth="2")
-        self.TFrame1_12.configure(relief="groove")
-
-        self.TFrame1_13 = ttk.Frame(self.Labelframe2)
-        self.TFrame1_13.place(relx=0.754, rely=0.148, relheight=0.333
-                , relwidth=0.054, bordermode='ignore')
-        self.TFrame1_13.configure(relief='groove')
-        self.TFrame1_13.configure(borderwidth="2")
-        self.TFrame1_13.configure(relief="groove")
+        self.videopanel13 = tk.Label(self.Labelframe2)
+        self.videopanel13.place(relx=0.754, rely=0.148, relheight=0.333
+                , relwidth=0.054)
+        self.videopanel13.configure(background="#d9d9d9")
+        self.videopanel13.configure(borderwidth="2")
+        self.videopanel13.configure(relief="ridge")
+     
+     
+    
+      
 
         self.Button1 = tk.Button(self.Labelframe2)
         self.Button1.place(relx=0.877, rely=0.148, height=34, width=67
@@ -319,14 +332,14 @@ class Toplevel1:
         self.Button2.configure(highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''Process''')
-        self.Button2.configure(command=lambda:self.num())
+        self.Button2.configure(command=lambda:self.Canvas_image())
 
         # print(num_test)
         # print(nb.run_example())
 
 
         self.Text1 = tk.Text(self.Labelframe2)
-        self.Text1.place(relx=0.015, rely=0.519, relheight=0.178, relwidth=0.052
+        self.Text1.place(relx=0.015, rely=0.600, relheight=0.178, relwidth=0.052
                 , bordermode='ignore')
         self.Text1.configure(background="white")
         self.Text1.configure(font="TkTextFont")
@@ -341,7 +354,7 @@ class Toplevel1:
         # self.Text1.configure()
 
         self.Text1_14 = tk.Text(self.Labelframe2)
-        self.Text1_14.place(relx=0.077, rely=0.519, relheight=0.178
+        self.Text1_14.place(relx=0.077, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_14.configure(background="white")
         self.Text1_14.configure(font="TkTextFont")
@@ -355,7 +368,7 @@ class Toplevel1:
         self.Text1_14.configure(wrap="word")
 
         self.Text1_15 = tk.Text(self.Labelframe2)
-        self.Text1_15.place(relx=0.138, rely=0.519, relheight=0.178
+        self.Text1_15.place(relx=0.138, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_15.configure(background="white")
         self.Text1_15.configure(font="TkTextFont")
@@ -369,7 +382,7 @@ class Toplevel1:
         self.Text1_15.configure(wrap="word")
 
         self.Text1_16 = tk.Text(self.Labelframe2)
-        self.Text1_16.place(relx=0.2, rely=0.519, relheight=0.178, relwidth=0.052
+        self.Text1_16.place(relx=0.2, rely=0.600, relheight=0.178, relwidth=0.052
                 , bordermode='ignore')
         self.Text1_16.configure(background="white")
         self.Text1_16.configure(font="TkTextFont")
@@ -383,7 +396,7 @@ class Toplevel1:
         self.Text1_16.configure(wrap="word")
 
         self.Text1_17 = tk.Text(self.Labelframe2)
-        self.Text1_17.place(relx=0.262, rely=0.519, relheight=0.178
+        self.Text1_17.place(relx=0.262, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_17.configure(background="white")
         self.Text1_17.configure(font="TkTextFont")
@@ -397,7 +410,7 @@ class Toplevel1:
         self.Text1_17.configure(wrap="word")
 
         self.Text1_18 = tk.Text(self.Labelframe2)
-        self.Text1_18.place(relx=0.323, rely=0.519, relheight=0.178
+        self.Text1_18.place(relx=0.323, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_18.configure(background="white")
         self.Text1_18.configure(font="TkTextFont")
@@ -411,7 +424,7 @@ class Toplevel1:
         self.Text1_18.configure(wrap="word")
 
         self.Text1_19 = tk.Text(self.Labelframe2)
-        self.Text1_19.place(relx=0.385, rely=0.519, relheight=0.178
+        self.Text1_19.place(relx=0.385, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_19.configure(background="white")
         self.Text1_19.configure(font="TkTextFont")
@@ -425,7 +438,7 @@ class Toplevel1:
         self.Text1_19.configure(wrap="word")
 
         self.Text1_20 = tk.Text(self.Labelframe2)
-        self.Text1_20.place(relx=0.446, rely=0.519, relheight=0.178
+        self.Text1_20.place(relx=0.446, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_20.configure(background="white")
         self.Text1_20.configure(font="TkTextFont")
@@ -439,7 +452,7 @@ class Toplevel1:
         self.Text1_20.configure(wrap="word")
 
         self.Text1_21 = tk.Text(self.Labelframe2)
-        self.Text1_21.place(relx=0.508, rely=0.519, relheight=0.178
+        self.Text1_21.place(relx=0.508, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_21.configure(background="white")
         self.Text1_21.configure(font="TkTextFont")
@@ -453,7 +466,7 @@ class Toplevel1:
         self.Text1_21.configure(wrap="word")
 
         self.Text1_22 = tk.Text(self.Labelframe2)
-        self.Text1_22.place(relx=0.569, rely=0.519, relheight=0.178
+        self.Text1_22.place(relx=0.569, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_22.configure(background="white")
         self.Text1_22.configure(font="TkTextFont")
@@ -467,7 +480,7 @@ class Toplevel1:
         self.Text1_22.configure(wrap="word")
 
         self.Text1_23 = tk.Text(self.Labelframe2)
-        self.Text1_23.place(relx=0.631, rely=0.519, relheight=0.178
+        self.Text1_23.place(relx=0.631, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_23.configure(background="white")
         self.Text1_23.configure(font="TkTextFont")
@@ -481,7 +494,7 @@ class Toplevel1:
         self.Text1_23.configure(wrap="word")
 
         self.Text1_24 = tk.Text(self.Labelframe2)
-        self.Text1_24.place(relx=0.692, rely=0.519, relheight=0.178
+        self.Text1_24.place(relx=0.692, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_24.configure(background="white")
         self.Text1_24.configure(font="TkTextFont")
@@ -495,7 +508,7 @@ class Toplevel1:
         self.Text1_24.configure(wrap="word")
 
         self.Text1_25 = tk.Text(self.Labelframe2)
-        self.Text1_25.place(relx=0.754, rely=0.519, relheight=0.178
+        self.Text1_25.place(relx=0.754, rely=0.600, relheight=0.178
                 , relwidth=0.052, bordermode='ignore')
         self.Text1_25.configure(background="white")
         self.Text1_25.configure(font="TkTextFont")

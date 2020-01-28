@@ -64,6 +64,7 @@ def detect_box(image):
         if w>200 and h>200 and w<1000 and h<700:
             idx+=1
             new_img=image_box[y:y+h,x:x+w]
+            cv2.imwrite("box/img"+ str(c) + '.png', new_img)
             imgbox=new_img
     return imgbox
 
@@ -186,7 +187,7 @@ def Process_paper():
     # cv2.imwrite("bi2"+".png",binary)
     # cv2.imshow("hb",image_black[0])
     # cv2.waitKey(0)
-    # plt.imshow(image_black)
+    # plt.imshow(erode[0])
     # plt.show()
     return erode
 
