@@ -31,9 +31,16 @@ import cnn_save as cnn
 import test_number as nb
 # import Project.code.cap as Camera
 # from tkinter import 
+def img2():
+    array_input=[]
+    for i in range(0,12,+1):
+            image_r=cv2.imread("temp/img"+str(i)+'.png')
+            # cv2.imshow("zfs",image_r)
+            # cv2.waitKey(0)
+            array_input.append(image_r)
+    return array_input
 
-# def img2():
-#         box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
+        # box_img = ImageTk.PhotoImage(Image.open("box/img1.png"))
 # def number():
 #         num_test = nb.run_example()
         
@@ -78,6 +85,9 @@ def destroy_Toplevel1():
     
 
 class Toplevel1:
+    def capture(self):
+        fmate.Process_paper()
+        self.Canvas_image()
     def Canvas_image(self):
         image_show= fmate.Process_paper()
         #     print(1)
@@ -88,14 +98,51 @@ class Toplevel1:
 
         self.videopanel.configure(image=self.my_img)
         # self.videopanel1.configure(image=image_show[0])
-        self.num()
-    
+        
+        # self.num()
+        self.out_image()
+
+    def out_image(self):
+        # self.readImage=[] 
+        
+        self.readImage=ImageTk.PhotoImage(Image.open("temp/img0.png"))
+        self.readImage1=ImageTk.PhotoImage(Image.open("temp/img1.png"))
+        self.readImage2=ImageTk.PhotoImage(Image.open("temp/img2.png"))
+        self.readImage3=ImageTk.PhotoImage(Image.open("temp/img3.png"))
+        self.readImage4=ImageTk.PhotoImage(Image.open("temp/img4.png"))
+        self.readImage5=ImageTk.PhotoImage(Image.open("temp/img5.png"))
+        self.readImage6=ImageTk.PhotoImage(Image.open("temp/img6.png"))
+        self.readImage7=ImageTk.PhotoImage(Image.open("temp/img7.png"))
+        self.readImage8=ImageTk.PhotoImage(Image.open("temp/img8.png"))
+        self.readImage9=ImageTk.PhotoImage(Image.open("temp/img9.png"))
+        self.readImage10=ImageTk.PhotoImage(Image.open("temp/img10.png"))
+        self.readImage11=ImageTk.PhotoImage(Image.open("temp/img11.png"))
+        self.readImage12=ImageTk.PhotoImage(Image.open("temp/img12.png"))
+             
+       
+        self.videopanel1.configure(image=self.readImage)
+        self.videopanel2.configure(image=self.readImage1)
+        self.videopanel4.configure(image=self.readImage2)
+        self.videopanel3.configure(image=self.readImage3)
+        self.videopanel5.configure(image=self.readImage4)
+        self.videopanel6.configure(image=self.readImage5)
+        self.videopanel7.configure(image=self.readImage6)
+        self.videopanel8.configure(image=self.readImage7)
+        self.videopanel9.configure(image=self.readImage8)
+        self.videopanel10.configure(image=self.readImage9)
+        self.videopanel11.configure(image=self.readImage10)
+        self.videopanel12.configure(image=self.readImage11)
+        self.videopanel13.configure(image=self.readImage12)
+
+        # else:
+        
     def num(self):
         # count=0
         # image_show= fmate.Process_paper()
         num_test = nb.run_example()
         # self.Canvasframe1.create_image(0,0,anchor=NE,image=image_show[0])
         if len(num_test) == 13:
+                # self.videopanel1.configure(image=num_test[0])
 
                 self.Text1.insert(tk.END,num_test[0])
                 self.Text1_14.insert(tk.END,num_test[1])
@@ -173,7 +220,7 @@ class Toplevel1:
         self.CapButton.configure(highlightcolor="black")
         self.CapButton.configure(pady="0")
         self.CapButton.configure(text='''Capture''')
-        self.CapButton.configure(command=lambda:fmate.Process_paper())
+        self.CapButton.configure(command=lambda:self.capture())
 
         
    
@@ -332,7 +379,7 @@ class Toplevel1:
         self.Button2.configure(highlightcolor="black")
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''Process''')
-        self.Button2.configure(command=lambda:self.Canvas_image())
+        self.Button2.configure(command=lambda:self.num())
 
         # print(num_test)
         # print(nb.run_example())
