@@ -62,11 +62,11 @@ def run_test_harness():
 	# define model
 	model = define_model()
 	# fit model
-	model.fit(trainX, trainY, epochs=10, batch_size=256, verbose=1,validation_data=(testX, testY))
+	model.fit(trainX, trainY, epochs=1000, batch_size=256, verbose=1,validation_data=(testX, testY))
 	# save model
-	model.save('final_model.h5py')
- 
+	model.save('final_model3.h5py')
+  
 # entry point, run the test harness
-# run_test_harness()
+run_test_harness()
 
 # print(prep_pixels(train, test))

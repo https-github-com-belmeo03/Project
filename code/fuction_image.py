@@ -53,42 +53,66 @@ def rotate_image(mat, angle):
 
     
 def detect_box(image):
-    image_box = image
+    # image_box = image
     # gray = cv2.cvtColor(image_box,cv2.COLOR_BGR2GRAY)
-    edged = cv2.Canny(image_box, 10, 250)
+    edged = cv2.Canny(image, 10, 250)
+    dst = cv2.fastNlMeansDenoising(image, None, 10, 10, 100) 
     (cnts, _) = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     idx = 0
     for c in cnts:
         x,y,w,h = cv2.boundingRect(c)
-        # print( x,y,w,h)
-        if w>200 and h>200 and w<1000 and h<700:
-            idx+=1
-            new_img=image_box[y:y+h,x:x+w]
-            cv2.imwrite("box/img"+ str(c) + '.png', new_img)
-            imgbox=new_img
-    return imgbox
+       
+        if w>700 and h>200  :
+            if w<1000 and h<300  :
+                print( x,y,w,h)
+            # if w>0 and h>0 :
+                idx+=1
+                new_img=image[y:y+h,x:x+w]
+                cv2.imwrite("box/img"+ str(idx) + '.png', new_img)
+                # imgbox=new_img
+    return new_img
 
-def detect_number(image):
-    arrayImage =[]
-    img_number = image
-
-    # gray = cv2.cvtColor(img_number,cv2.COLOR_BGR2GRAY)
-    # cv2.imshow("asd",img_number)
-    edged = cv2.Canny(img_number, 10, 250)
+def detect_boxNumber(image):
+    # arrayImage =[]
+    edged = cv2.Canny(image, 10, 250)
     (cnts, _) = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     sorted_ctrs = sorted(cnts, key=lambda cnts: cv2.boundingRect(cnts)[0])
     idx=0
     for i, ctr in enumerate(sorted_ctrs):
         x, y, w, h = cv2.boundingRect(ctr)
-        if w>25 and h>25 and w<70 and h<70: 
-            # print(x, y, w, h)
-            idx=+1
-            new_img=img_number[y:y+h,x:x+w]
-            cv2.imwrite("number/img"+ str(i) + '.png', new_img)
-            arrayImage.append(new_img)
-            # img_number2=new_img 
-            # cv2.imshow("asd"+str(i),img_number2)
-    return arrayImage 
+        if w>500 and h>40 : 
+            if w<600 and h<80 : 
+        # if w>0 and h>0 : 
+                # print(x, y, w, h)
+                idx=+1
+                new_img=image[y:y+h,x:x+w]
+                # cv2.imwrite("number/img"+ str(i) + '.png', new_img)
+                cv2.imwrite("number/img2" + '.png', new_img)
+                # arrayImage.append(new_img)
+    return new_img
+
+
+def detect_number(image):
+    arrayImage_num =[]
+    # img_number = image
+
+    # gray = cv2.cvtColor(img_number,cv2.COLOR_BGR2GRAY)
+    # cv2.imshow("asd",img_number)
+    edged = cv2.Canny(image, 10, 250)
+    (cnts, _) = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    sorted_ctrs = sorted(cnts, key=lambda cnts: cv2.boundingRect(cnts)[0])
+    idx=0
+    for i, ctr in enumerate(sorted_ctrs):
+        x, y, w, h = cv2.boundingRect(ctr)
+        if w>35 and h>40 : 
+            if w<50 and h<55 : 
+        # if w>0 and h>0 : 
+                # print(x, y, w, h)
+                idx=+1
+                new_img=image[y:y+h,x:x+w]
+                cv2.imwrite("code2/num/img"+ str(i) + '.png', new_img)
+                arrayImage_num.append(new_img)
+    return arrayImage_num
 
 
 def frame_detail(img):
@@ -128,6 +152,7 @@ def reblack(Img_black):
                     Img_First[i][j]=0
                 else:
                     Img_First[i][j]=255
+        cv2.imwrite("clear_image/img"+ str(k) + '.png', Img_First)
         array_black.append(Img_First)
         # print(array_black)
         # cv2.imshow("asd",array_black)              
@@ -135,17 +160,21 @@ def reblack(Img_black):
 
 def tem_size(gray):
     array_size=[]
+    
     for k in range (0,gray.__len__(),+1):
         Img_First = gray[k]
         
         h,w = Img_First.shape
         # print(w,h)
-        backgroundImg = np.zeros((30, 30), dtype=np.uint8)
+        backgroundImg = np.zeros((50, 50), dtype=np.uint8)
+        start_W_position = int(25-(w/2))
+        start_H_position = int(25-(h/2))
+        
         for i in range(0,h,+1):
             for j in range(0,w,+1):
-                backgroundImg[i][j]=Img_First[i][j]
+                backgroundImg[i+start_H_position][j+start_W_position]=Img_First[i][j]
         
-        # cv2.imwrite("temp/img"+ str(k) + '.png', backgroundImg)
+                cv2.imwrite("temp/img"+ str(k) + '.png', backgroundImg)
         array_size.append(backgroundImg)
  
 
@@ -163,24 +192,24 @@ def erosion(image):
       
 
 def Process_paper():
-    image = cv2.imread("cap2.jpg")
+    image = cv2.imread("bi4.png")
     # image3 = cv2.imread("box/img1.png")
     # print(image3)
 
     grayscale = gray_scale(image)
 
     binary = binary_image(grayscale)
-    rot = rotate_image(binary,-90)
-    box = detect_box(rot)
-
-    number = detect_number(box)
+    # rot = rotate_image(binary,0)
+    box = detect_box(binary)
+    boxNumber=detect_boxNumber(box)
+    number = detect_number(boxNumber)
     cut_fram = frame_detail(number)
     image_black=reblack(cut_fram)
     temp_size = tem_size(image_black)
-    erode = erosion(temp_size)
+    # erode = erosion(temp_size)
     
 
-    # print(erode)
+    # print(cut_fram)
     # noise2 = add_gaussian_noise(binary)
     # detec = detection(grayscale)
     # cv2.imshow("asd",binary)
@@ -189,10 +218,10 @@ def Process_paper():
     # cv2.waitKey(0)
     # plt.imshow(erode[0])
     # plt.show()
-    return erode
+    return temp_size
 
 
-# Process_paper()
+Process_paper()
 # print(Process_paper())
 
 
