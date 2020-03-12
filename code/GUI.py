@@ -27,7 +27,7 @@ from PIL import ImageTk,Image
 import PIL
 
 import fuction_image as fmate
-import cnn_save as cnn
+# import cnn_save as cnn
 import test_number as nb
 # import Project.code.cap as Camera
 # from tkinter import 
@@ -118,6 +118,8 @@ class Toplevel1:
         self.readImage10=ImageTk.PhotoImage(Image.open("temp/img10.png"))
         self.readImage11=ImageTk.PhotoImage(Image.open("temp/img11.png"))
         self.readImage12=ImageTk.PhotoImage(Image.open("temp/img12.png"))
+        self.readImage13=ImageTk.PhotoImage(Image.open("score/img1.png"))
+        
              
        
         self.videopanel1.configure(image=self.readImage)
@@ -133,6 +135,9 @@ class Toplevel1:
         self.videopanel11.configure(image=self.readImage10)
         self.videopanel12.configure(image=self.readImage11)
         self.videopanel13.configure(image=self.readImage12)
+        self.videopanel14.configure(image=self.readImage13)
+       
+
 
         # else:
         
@@ -257,6 +262,20 @@ class Toplevel1:
         self.Labelframe2.configure(text='''HCR''')
         self.Labelframe2.configure(background="#d9d9d9")
 
+        self.Labelframe3 = tk.LabelFrame(top)
+        self.Labelframe3.place(relx=0.025, rely=0.70, relheight=0.263
+                , relwidth=0.802)
+        self.Labelframe3.configure(relief='groove')
+        self.Labelframe3.configure(foreground="black")
+        self.Labelframe3.configure(text='''SCORE''')
+        self.Labelframe3.configure(background="#d9d9d9")
+
+        self.videopanel14 = tk.Label(self.Labelframe3)
+        self.videopanel14.place(relx=0.015, rely=0.10, relheight=0.800
+                , relwidth=0.100)
+        self.videopanel14.configure(background="#d9d9d9")
+        self.videopanel14.configure(borderwidth="2")
+        self.videopanel14.configure(relief="ridge")
 
         self.videopanel1 = tk.Label(self.Labelframe2)
         self.videopanel1.place(relx=0.015, rely=0.148, relheight=0.333
@@ -353,19 +372,19 @@ class Toplevel1:
     
       
 
-        self.Button1 = tk.Button(self.Labelframe2)
-        self.Button1.place(relx=0.877, rely=0.148, height=34, width=67
-                , bordermode='ignore')
-        self.Button1.configure(activebackground="#ececec")
-        self.Button1.configure(activeforeground="#000000")
-        self.Button1.configure(background="#d9d9d9")
-        self.Button1.configure(disabledforeground="#a3a3a3")
-        self.Button1.configure(foreground="#000000")
-        self.Button1.configure(highlightbackground="#d9d9d9")
-        self.Button1.configure(highlightcolor="black")
-        self.Button1.configure(pady="0")
-        self.Button1.configure(text='''Train''')
-        # self.Button1.configure(command=lambda:cnn.run_test_harness())
+        # self.Button1 = tk.Button(self.Labelframe2)
+        # self.Button1.place(relx=0.877, rely=0.148, height=34, width=67
+        #         , bordermode='ignore')
+        # self.Button1.configure(activebackground="#ececec")
+        # self.Button1.configure(activeforeground="#000000")
+        # self.Button1.configure(background="#d9d9d9")
+        # self.Button1.configure(disabledforeground="#a3a3a3")
+        # self.Button1.configure(foreground="#000000")
+        # self.Button1.configure(highlightbackground="#d9d9d9")
+        # self.Button1.configure(highlightcolor="black")
+        # self.Button1.configure(pady="0")
+        # self.Button1.configure(text='''Train''')
+        # self.Button1.configure(command=lambda:cnn.run_test_harness)
 
         self.Button2 = tk.Button(self.Labelframe2)
         self.Button2.place(relx=0.877, rely=0.519, height=34, width=67

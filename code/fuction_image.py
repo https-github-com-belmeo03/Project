@@ -64,7 +64,7 @@ def detect_box(image):
        
         if w>700 and h>200  :
             if w<1000 and h<300  :
-                print( x,y,w,h)
+                # print( x,y,w,h)
             # if w>0 and h>0 :
                 idx+=1
                 new_img=image[y:y+h,x:x+w]
@@ -189,35 +189,58 @@ def erosion(image):
         array_erode.append(img_erosion)
     return array_erode
         
-      
+img2 = []   
+
+def setimgNumber(img):
+    img2.append(img)
 
 def Process_paper():
-    image = cv2.imread("bi4.png")
-    # image3 = cv2.imread("box/img1.png")
-    # print(image3)
+    try:
+        image = cv2.imread("bi8.png")
+        # image3 = cv2.imread("box/img1.png")
+        # print(image3)
 
-    grayscale = gray_scale(image)
+        grayscale = gray_scale(image)
 
-    binary = binary_image(grayscale)
-    # rot = rotate_image(binary,0)
-    box = detect_box(binary)
-    boxNumber=detect_boxNumber(box)
-    number = detect_number(boxNumber)
-    cut_fram = frame_detail(number)
-    image_black=reblack(cut_fram)
-    temp_size = tem_size(image_black)
+        binary = binary_image(grayscale)
+        # rot = rotate_image(binary,0)
+        box = detect_box(binary)
+        boxNumber=detect_boxNumber(box)
+        number = detect_number(boxNumber)
+        cut_fram = frame_detail(number)
+        image_black=reblack(cut_fram)
+        temp_size = tem_size(image_black)
+        setimgNumber(temp_size)
+    except:
+   
+        image = cv2.imread("bi8.png")
+        # image3 = cv2.imread("box/img1.png")
+        # print(image3)
+
+        grayscale = gray_scale(image)
+
+        binary = binary_image(grayscale)
+        # rot = rotate_image(binary,0)
+        
+        boxNumber=detect_boxNumber(binary)
+        # print(boxNumber)
+        number = detect_number(boxNumber)
+        cut_fram = frame_detail(number)
+        image_black=reblack(cut_fram)
+        temp_size = tem_size(image_black)
+        setimgNumber(temp_size)
     # erode = erosion(temp_size)
+    return temp_size
+
+
+
+def getimgNumber():
+    return img2[0]
     
 
-    # print(cut_fram)
-    # noise2 = add_gaussian_noise(binary)
-    # detec = detection(grayscale)
-    # cv2.imshow("asd",binary)
-    # cv2.imwrite("bi2"+".png",binary)
-    # cv2.imshow("hb",image_black[0])
-    # cv2.waitKey(0)
-    # plt.imshow(erode[0])
-    # plt.show()
+
+def Process_paper2():
+    temp_size = tem_size(getimgNumber())
     return temp_size
 
 

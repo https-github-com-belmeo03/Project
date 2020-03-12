@@ -18,7 +18,7 @@ def sumPixel(image,h,w):
     return image
 
 
-image = cv2.imread("bi3.png")
+image = cv2.imread("box/img2.png")
 
 gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 (thresh, binary) = cv2.threshold(gray, 140, 255, cv2.THRESH_BINARY)
@@ -28,21 +28,9 @@ edged = cv2.Canny(image, 10, 250)
 idx = 0
 for c in cnts:
     x,y,w,h = cv2.boundingRect(c)
-    # print( x,y,w,h)
-    # if w>700 and h>200  :
+    if w>100 and h>150 :
         # print( x,y,w,h)
-        # if w<1000 and h<300  :
-            
-        # if w>0 and h>0 :
-    idx+=1
-    new_img=dst[y:y+h,x:x+w]
-    cv2.imwrite("box/img"+ str(idx) + '.png', sumPixel(new_img,h,w))
-    # else:
-    #     new_img2=dst[y:y+0,x:x+5]
-    #     cv2.imwrite("box/img2" + '.png', new_img2)
-# cv2.imshow("fghjk",new_img2)
-# cv2.waitKey(0)
-
-
-
-
+        if w<150 and h<200 :
+            idx+=1
+            new_img=dst[y:y+h,x:x+w]
+            cv2.imwrite("score/img"+ str(idx) + '.png', new_img)

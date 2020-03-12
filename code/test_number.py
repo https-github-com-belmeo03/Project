@@ -55,7 +55,7 @@ def run_example():
 	count_number=[]
 	# load the image
 	# model = load_model('final_model2.h5py')
-	img = load_image(fmate.Process_paper())
+	img = load_image(fmate.Process_paper2())
 	model = load_model('final_model3.h5py')
 
 	# # # predict the class
@@ -65,8 +65,14 @@ def run_example():
 		print(digit)
 	# 	# plt.imshow(img[i]);
 		count_number.append(int(digit))
+	
+	saveCSV(count_number)
 	return count_number
 
+def saveCSV(data):
+	file = open("code1.csv", "w")
+	for i_r in range(0,data.__len__(),+1):
+ 		file.write(str(data[i_r])+",")
 
 
 # plt.show()
