@@ -196,7 +196,7 @@ def setimgNumber(img):
 
 def Process_paper():
     try:
-        image = cv2.imread("bi8.png")
+        image = cv2.imread("t5.png")
         # image3 = cv2.imread("box/img1.png")
         # print(image3)
 
@@ -213,7 +213,7 @@ def Process_paper():
         setimgNumber(temp_size)
     except:
    
-        image = cv2.imread("bi8.png")
+        image = cv2.imread("t5.png")
         # image3 = cv2.imread("box/img1.png")
         # print(image3)
 
