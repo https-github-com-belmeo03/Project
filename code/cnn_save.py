@@ -57,14 +57,14 @@ def run_test_harness():
 	trainX, trainY, testX, testY = load_dataset()
    
 	# prepare pixel data
-	trainX, testX = prep_pixels(trainX, testX)
+	trainX, testX = prep_pixels(trainX, testX)  0
     
 	# define model
 	model = define_model()
 	# fit model
 	model.fit(trainX, trainY, epochs=1000, batch_size=256, verbose=1,validation_data=(testX, testY))
 	# save model
-	model.save('final_model3.h5py')
+	model.save('final_model4.h5py')
   
 # entry point, run the test harness
 run_test_harness()
