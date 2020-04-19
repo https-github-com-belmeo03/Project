@@ -30,7 +30,8 @@ from tkinter import filedialog
 from PIL import ImageTk,Image
 import PIL
 
-# import cap as cp
+import cap as cp
+import camera as cm
 import fuction_image as fmate
 import test_number as nb
 
@@ -205,6 +206,11 @@ class Toplevel1:
                 # print(type(filename))
                 fmate.Process_paper(filename.name)   
                 self.capture()
+    def cap_img(self):
+
+        cp.frame_cap()
+        self.capture()
+        
 
     def edit_number(self):
         # num_test = nb.run_example()
@@ -292,20 +298,20 @@ class Toplevel1:
         self.CButton.configure(highlightcolor="black")
         self.CButton.configure(pady="0")
         self.CButton.configure(text='Camera')
-        self.CButton.configure(command=lambda:cp.frame_cap())
+        self.CButton.configure(command=lambda:self.cap_img())
 
-        # self.CapButton = tk.Button(top)
-        # self.CapButton.place(relx=0.864, rely=0.195, height=34, width=77)
-        # self.CapButton.configure(activebackground="#ececec")
-        # self.CapButton.configure(activeforeground="#000000")
-        # self.CapButton.configure(background="#d9d9d9")
-        # self.CapButton.configure(disabledforeground="#a3a3a3")
-        # self.CapButton.configure(foreground="#000000")
-        # self.CapButton.configure(highlightbackground="#d9d9d9")
-        # self.CapButton.configure(highlightcolor="black")
-        # self.CapButton.configure(pady="0")
-        # self.CapButton.configure(text='''Capture''')
-        # self.CapButton.configure(command=lambda:self.capture())
+        self.CapButton = tk.Button(top)
+        self.CapButton.place(relx=0.864, rely=0.195, height=34, width=77)
+        self.CapButton.configure(activebackground="#ececec")
+        self.CapButton.configure(activeforeground="#000000")
+        self.CapButton.configure(background="#d9d9d9")
+        self.CapButton.configure(disabledforeground="#a3a3a3")
+        self.CapButton.configure(foreground="#000000")
+        self.CapButton.configure(highlightbackground="#d9d9d9")
+        self.CapButton.configure(highlightcolor="black")
+        self.CapButton.configure(pady="0")
+        self.CapButton.configure(text='''Capture''')
+        self.CapButton.configure(command=lambda:cm.frame_camera())
 
         self.bButton = tk.Button(top)
         self.bButton.place(relx=0.864, rely=0.295, height=34, width=77)

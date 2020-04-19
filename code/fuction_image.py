@@ -380,48 +380,54 @@ def setimgNumber(img):
 def Process_paper(open_file):
 
 
-    # try:
-    image = cv2.imread(open_file)
-    
+    try:
+        image = cv2.imread(open_file)
+        # print(image)
+        
 
-    grayscale = gray_scale(image)
+        grayscale = gray_scale(image)
 
-    binary = binary_image(grayscale)
-    
-    
+        binary = binary_image(grayscale)
+        
+        
 
 
-    box = detect_box(binary)
+        box = detect_box(binary)
 
-    under=box_under(box)
-    # print("2")
-    boxscore= detect_boxscore(under)
-    Process_score(boxscore)
+        under=box_under(box)
+        # print("2")
+        boxscore= detect_boxscore(under)
+        Process_score(boxscore)
 
-    boxNumber=detect_boxNumber(under)
-    number = detect_number(boxNumber)
-    cut_fram = frame_detail(number)
-    image_black=reblack(cut_fram)
-    temp_size = tem_size(image_black)
-    check=check_point(temp_size)
-    setimgNumber(check)
-    # except:
+        boxNumber=detect_boxNumber(under)
+        number = detect_number(boxNumber)
+        cut_fram = frame_detail(number)
+        image_black=reblack(cut_fram)
+        temp_size = tem_size(image_black)
+        check=check_point(temp_size)
+        setimgNumber(check)
+    except:
+        print(open_file)
 
     #     image = cv2.imread(open_file)
-    #     grayscale = gray_scale(image)
-    #     binary = binary_image(grayscale)
-        #   print("1")
-    #     boxscore= detect_boxscore(binary)
-    #     Process_score(boxscore)
+        # grayscale = gray_scale(open_file)
+        binary = binary_image(open_file)
+        print("1")
+        box = detect_box(binary)
 
-    #     boxNumber=detect_boxNumber(binary)
-     
-    #     number = detect_number(boxNumber)
-    #     cut_fram = frame_detail(number)
-    #     image_black=reblack(cut_fram)
-    #     temp_size = tem_size(image_black)
-    #     check=check_point(temp_size)
-    #     setimgNumber(check)
+        under=box_under(box)
+        # print("2")
+        boxscore= detect_boxscore(under)
+        Process_score(boxscore)
+
+        boxNumber=detect_boxNumber(under)
+        number = detect_number(boxNumber)
+        cut_fram = frame_detail(number)
+        image_black=reblack(cut_fram)
+        temp_size = tem_size(image_black)
+        check=check_point(temp_size)
+        setimgNumber(check)
+        
   
     return check
 

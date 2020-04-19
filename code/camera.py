@@ -3,7 +3,7 @@ import numpy as np
 import fuction_image as fmat
 
 
-def frame_cap():
+def frame_camera():
 
 	cam = cv2.VideoCapture(0)
 	cv2.namedWindow("test")
@@ -45,7 +45,7 @@ def frame_cap():
 					gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 					th = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 115, 40)
 					#Imgcut = th[220:260, 290:335]
-					fmat.Process_paper(th)
+					# fmat.Process_paper(th)
 					cv2.imwrite("BinaryS21.png", th)
 					cv2.imshow('Adaptive threshold', th)
 					#print("{} written!".format(img_name))
