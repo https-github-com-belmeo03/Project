@@ -255,7 +255,7 @@ class Toplevel1:
         array_editScore.append(s2)
         array_editScore.append(s3)
 
-        nb.csv(array_editScore,array_edit)
+        nb.csv_file(array_editScore,array_edit)
 
         
         

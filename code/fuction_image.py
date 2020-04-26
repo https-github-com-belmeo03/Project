@@ -308,9 +308,9 @@ def tem_sizeScore(gray):
         
         h,w = Img_First.shape
         # print("test")
-        backgroundImg = np.zeros((130, 130), dtype=np.uint8)
-        start_W_position = int(65-(w/2))
-        start_H_position = int(65-(h/2))
+        backgroundImg = np.zeros((60, 60), dtype=np.uint8)
+        start_W_position = int(30-(w/2))
+        start_H_position = int(30-(h/2))
         
         for i in range(0,h,+1):
             for j in range(0,w,+1):

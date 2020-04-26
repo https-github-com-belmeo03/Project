@@ -4,6 +4,7 @@ from keras.models import load_model
 import matplotlib.pyplot as plt
 import fuction_image as fmate
 import cv2
+import csv
 # import input_image as ing
 # load and prepare the image
 plt.rcParams['image.cmap'] = 'gray'
@@ -128,14 +129,24 @@ def run_score():
 	
 	# saveCSV(count_score)
 	return count_score
-def csv(score,number):
-	print(score)
-	print(number)
+def csv_file(score,number):
+	# array_number = []
+	with open("code3.csv", "a") as f:
+		# fieldnames = ['score','number']
+		# writer = csv.DictWriter(f, lineterminator='\n')
+		writer = csv.writer(f,lineterminator='\n')
+		# writer.writeheader()
+		# for row in writer
+		writer.writerow([score,number])
+
+
+	# print(array_number)
+
 
 def saveCSV(data):
 	file = open("code2.csv", "w")
 	for i_r in range(0,data.__len__(),+1):
- 		file.write(str(data[i_r]))
+ 		file.write(str(data[i_r])+',')
 
 
 
