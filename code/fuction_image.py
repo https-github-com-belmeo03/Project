@@ -2,13 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-def readImage ():
-    image3 = cv2.imread("box/img1.png")
-    # print(image3)
-    cv2.imshow("sd",image3)
-    cv2.waitKey(0)
-    # ia = image3
-    # return ia
+
 
 def gray_scale(image):
     gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
@@ -112,7 +106,7 @@ def detect_boxNumber(image):
                 idx=+1
                 new_img=image[y:y+h,x:x+w]
                 # cv2.imwrite("number/img"+ str(i) + '.png', new_img)
-                cv2.imwrite("number/img2" + '.png', new_img)
+                # cv2.imwrite("number/img2" + '.png', new_img)
                 # arrayImage.append(new_img)
     return new_img
 
@@ -135,7 +129,7 @@ def detect_number(image):
                 # print(x, y, w, h)
                 idx+=1
                 new_img=image[y:y+h,x:x+w]
-                cv2.imwrite("num/img"+ str(idx) + '.png', new_img)
+                # cv2.imwrite("num/img"+ str(idx) + '.png', new_img)
                 # cv2.imwrite("num/img"+ str(idx) + '.png', image)
                 arrayImage_num.append(new_img)
     return arrayImage_num
@@ -157,31 +151,22 @@ def frame_detail(img):
 
 
 def reblack(Img_black):
-    # gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    # (thresh, Img_First) = cv2.threshold(gray, 140, 255, cv2.THRESH_BINARY)
-    #cv2.imshow("imaB",Img_First)
-
-    #cv2.waitKey(0)
-    #กำหนดให้ widthคือความกล้าง และ heightคือความสูง  แล้วให้ rows คือหาค่าในแนวนอนของความสูง และ cols คือหาค่าในแนวตั้งของความกว้าง---------------------------
+   
     array_black=[]
     for k in range (0,Img_black.__len__(),+1):
         Img_First = Img_black[k]
         
         Height,Width = Img_First.shape
-        # print(Height,Width)
-        # print("H : "+ str(Height)+"  W : "+str(Width))
-
-
+       
         for i in range (0,Height,+1):
             for j in range (0,Width,+1):
                 if Img_First[i][j]==255:
                     Img_First[i][j]=0
                 else:
                     Img_First[i][j]=255
-        cv2.imwrite("clear_image/img"+ str(k) + '.png', Img_First)
+        # cv2.imwrite("clear_image/img"+ str(k) + '.png', Img_First)
         array_black.append(Img_First)
-        # print(array_black)
-        # cv2.imshow("asd",array_black)              
+               
     return array_black
 
 def tem_size(gray):
@@ -260,7 +245,7 @@ def detect_boxscore(img):
                 # print(img)
                 # idx+=1
                 new_img2=img[y:y+h,x:x+w]
-                cv2.imwrite("score/img"+  '.png', new_img2)
+                # cv2.imwrite("score/img"+  '.png', new_img2)
         # imgbox=new_img
     return new_img2
 
@@ -282,7 +267,7 @@ def detect_score(img):
                 # print(x, y, w, h)
                 idx+=1
                 new_img=img[y:y+h,x:x+w]
-                cv2.imwrite("num_score/img"+ str(idx) + '.png', new_img)
+                # cv2.imwrite("num_score/img"+ str(idx) + '.png', new_img)
                 arrayImage_score.append(new_img)
     return arrayImage_score
 
@@ -344,11 +329,38 @@ def reblack_score(Img_black):
                     Img_First[i][j]=0
                 else:
                     Img_First[i][j]=255
-        cv2.imwrite("clear_score/img"+ str(k) + '.png', Img_First)
+        # cv2.imwrite("clear_score/img"+ str(k) + '.png', Img_First)
         array_black.append(Img_First)
         # print(array_black)
         # cv2.imshow("asd",array_black)              
     return array_black
+def check_score(point):
+    # array_point=[]
+    # print(point[12])
+    Img_point = point[0]
+    # plt.imshow(Img_point)
+    # plt.show()
+    h,w = Img_point.shape
+    
+    Rows=h
+    Cols=w
+    SumPixel_H = np.array([(y/255) for y in Img_point.sum(axis=1)])
+    
+    Hol = len(SumPixel_H)
+    count_p = 0
+    for i in range(0,Hol,+1):
+        if SumPixel_H[i] == 0:
+            i =+1
+        else:
+            count_p =+i
+            # i =+1
+    # print(i)
+    # print(count_p)
+    if count_p < 5:
+        point.pop(0)
+    # print(point[0])
+    return point
+
 img_score=[]
 def setScore(img):
     img_score.clear()
@@ -359,8 +371,8 @@ def Process_score(img):
     num =frame_detailScore(score)
     reblack=reblack_score(num)
     temp=tem_sizeScore(reblack)
-    # check=check_point(temp)
-    setScore(temp)
+    check=check_score(temp)
+    setScore(check)
     # print(temp)
 def getScore():
     return img_score[0]   
@@ -380,53 +392,50 @@ def setimgNumber(img):
 def Process_paper(open_file):
 
 
-    try:
-        image = cv2.imread(open_file)
-        # print(image)
-        
-
-        grayscale = gray_scale(image)
-
-        binary = binary_image(grayscale)
-        
-        
-
-
-        box = detect_box(binary)
-
-        under=box_under(box)
-        # print("2")
-        boxscore= detect_boxscore(under)
-        Process_score(boxscore)
-
-        boxNumber=detect_boxNumber(under)
-        number = detect_number(boxNumber)
-        cut_fram = frame_detail(number)
-        image_black=reblack(cut_fram)
-        temp_size = tem_size(image_black)
-        check=check_point(temp_size)
-        setimgNumber(check)
-    except:
-        print(open_file)
-
+    # try:
     #     image = cv2.imread(open_file)
-        # grayscale = gray_scale(open_file)
-        binary = binary_image(open_file)
-        print("1")
-        box = detect_box(binary)
+        
+        
 
-        under=box_under(box)
-        # print("2")
-        boxscore= detect_boxscore(under)
-        Process_score(boxscore)
+    #     grayscale = gray_scale(image)
 
-        boxNumber=detect_boxNumber(under)
-        number = detect_number(boxNumber)
-        cut_fram = frame_detail(number)
-        image_black=reblack(cut_fram)
-        temp_size = tem_size(image_black)
-        check=check_point(temp_size)
-        setimgNumber(check)
+    #     binary = binary_image(grayscale)
+        
+        
+
+
+    #     box = detect_box(binary)
+
+    #     under=box_under(box)
+      
+    #     boxscore= detect_boxscore(under)
+    #     Process_score(boxscore)
+
+    #     boxNumber=detect_boxNumber(under)
+    #     number = detect_number(boxNumber)
+    #     cut_fram = frame_detail(number)
+    #     image_black=reblack(cut_fram)
+    #     temp_size = tem_size(image_black)
+    #     check=check_point(temp_size)
+    #     setimgNumber(check)
+    # except:
+        
+    binary = binary_image(open_file)
+    
+    box = detect_box(binary)
+
+    under=box_under(box)
+    
+    boxscore= detect_boxscore(under)
+    Process_score(boxscore)
+
+    boxNumber=detect_boxNumber(under)
+    number = detect_number(boxNumber)
+    cut_fram = frame_detail(number)
+    image_black=reblack(cut_fram)
+    temp_size = tem_size(image_black)
+    check=check_point(temp_size)
+    setimgNumber(check)
         
   
     return check

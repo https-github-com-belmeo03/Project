@@ -3,6 +3,7 @@ from keras.preprocessing.image import img_to_array
 from keras.models import load_model
 import matplotlib.pyplot as plt
 import fuction_image as fmate
+import scan as sc
 import cv2
 import csv
 # import input_image as ing
@@ -15,26 +16,7 @@ plt.rcParams['image.cmap'] = 'gray'
 # 			image_array.append(image)
 # 	return image_array
 
-def binary_image(img):
-	
-	array_binary=[]
-	for k in range (0,img.__len__()-1,+1):
-		
-		Img_First = img[k]
-		
-		Height,Width = Img_First.shape
-		# print(Height,Width)
 
-
-		for i in range (0,Height,+1):
-			for j in range (0,Width,+1):
-				if Img_First[i][j]!=0:
-					
-					Img_First[i][j]=255
-		cv2.imwrite("resize/img"+ str(k) + '.png', Img_First)
-		array_binary.append(Img_First)
-	return array_binary
-               
 
 def load_image(filename):
 	# load the image
@@ -65,9 +47,10 @@ def load_image(filename):
 def run_example():
 	
 	count_number=[]
-	# load the image
-	# model = load_model('final_model2.h5py')
-	img = load_image(fmate.Process_paper2())
+	try:
+		img = load_image(sc.getscan_function())
+	except:
+		img = load_image(fmate.Process_paper2())
 	
 	
 	model = load_model('final_model3.h5py')
@@ -112,7 +95,10 @@ def run_score():
 	count_score=[]
 	# load the image
 	# model = load_model('final_model2.h5py')
-	img2 = load_score(fmate.Process_score2())
+	try:
+		img2 = load_image(sc.getscan_function2())
+	except:
+		img2 = load_score(fmate.Process_score2())
 	# print(img2)
 	
 	

@@ -31,9 +31,10 @@ from PIL import ImageTk,Image
 import PIL
 
 import cap as cp
-import camera as cm
+# import camera as cm
 import fuction_image as fmate
 import test_number as nb
+import scan as sc
 
 
         
@@ -109,9 +110,9 @@ class Toplevel1:
         self.readImage10=ImageTk.PhotoImage(Image.open("temp/img10.png"))
         self.readImage11=ImageTk.PhotoImage(Image.open("temp/img11.png"))
         self.readImage12=ImageTk.PhotoImage(Image.open("temp/img12.png"))
-        self.readImage13=ImageTk.PhotoImage(Image.open("num_score/img1.png"))
-        self.readImage14=ImageTk.PhotoImage(Image.open("num_score/img2.png"))
-        self.readImage15=ImageTk.PhotoImage(Image.open("num_score/img3.png"))
+        self.readImage13=ImageTk.PhotoImage(Image.open("temp_score/img0.png"))
+        self.readImage14=ImageTk.PhotoImage(Image.open("temp_score/img1.png"))
+        self.readImage15=ImageTk.PhotoImage(Image.open("temp_score/img2.png"))
         
              
        
@@ -190,9 +191,13 @@ class Toplevel1:
                 self.Text1_23.insert(tk.END,num_test[10])
                 self.Text1_24.insert(tk.END,num_test[11])
         
-        self.Text1_26.insert(tk.END,score_test[0])
-        self.Text1_27.insert(tk.END,score_test[1])
-        self.Text1_28.insert(tk.END,score_test[2])
+        if len(score_test) == 3:
+                self.Text1_26.insert(tk.END,score_test[0])
+                self.Text1_27.insert(tk.END,score_test[1])
+                self.Text1_28.insert(tk.END,score_test[2])
+        else:
+                self.Text1_27.insert(tk.END,score_test[0])
+                self.Text1_28.insert(tk.END,score_test[1])
         # print(test)
 #     def test(img):
         
@@ -200,11 +205,14 @@ class Toplevel1:
 
     def browse_file(self):
        
-        filename = filedialog.askopenfile(mode="rb",title = "Select file",filetypes = (("files","*.png"),("all files","*.*")))
+        filename = filedialog.askopenfile(mode="rb",title = "Select file",filetypes = (("files","*.jpg"),("all files","*.*")))
         if filename != None:
                 # print(filename.name)
                 # print(type(filename))
-                fmate.Process_paper(filename.name)   
+                # try:
+                #         fmate.Process_paper(filename.name)
+                # except:
+                sc.scan_function(filename.name)
                 self.capture()
     def cap_img(self):
 
@@ -300,18 +308,18 @@ class Toplevel1:
         self.CButton.configure(text='Camera')
         self.CButton.configure(command=lambda:self.cap_img())
 
-        self.CapButton = tk.Button(top)
-        self.CapButton.place(relx=0.864, rely=0.195, height=34, width=77)
-        self.CapButton.configure(activebackground="#ececec")
-        self.CapButton.configure(activeforeground="#000000")
-        self.CapButton.configure(background="#d9d9d9")
-        self.CapButton.configure(disabledforeground="#a3a3a3")
-        self.CapButton.configure(foreground="#000000")
-        self.CapButton.configure(highlightbackground="#d9d9d9")
-        self.CapButton.configure(highlightcolor="black")
-        self.CapButton.configure(pady="0")
-        self.CapButton.configure(text='''Capture''')
-        self.CapButton.configure(command=lambda:cm.frame_camera())
+        # self.CapButton = tk.Button(top)
+        # self.CapButton.place(relx=0.864, rely=0.195, height=34, width=77)
+        # self.CapButton.configure(activebackground="#ececec")
+        # self.CapButton.configure(activeforeground="#000000")
+        # self.CapButton.configure(background="#d9d9d9")
+        # self.CapButton.configure(disabledforeground="#a3a3a3")
+        # self.CapButton.configure(foreground="#000000")
+        # self.CapButton.configure(highlightbackground="#d9d9d9")
+        # self.CapButton.configure(highlightcolor="black")
+        # self.CapButton.configure(pady="0")
+        # self.CapButton.configure(text='''Capture''')
+        # self.CapButton.configure(command=lambda:cm.frame_camera())
 
         self.bButton = tk.Button(top)
         self.bButton.place(relx=0.864, rely=0.295, height=34, width=77)
