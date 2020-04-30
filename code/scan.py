@@ -7,13 +7,13 @@ def scan_cut(image):
     gray=cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
     (thresh, Img_First) = cv2.threshold(gray, 140, 255, cv2.THRESH_BINARY)
 
-
-    w,h = Img_First.shape
+    re_img =cv2.resize(Img_First,(2468,3500))
+    w,h = re_img.shape
     
-    UpperAndLower_Cut = Img_First[0 : 1234,0:w]
+    UpperAndLower_Cut = re_img[0 : 1234,0:w]
     
     # cv2.imshow("sad",UpperAndLower_Cut)
-    UpperAndLower_Cut2 = Img_First[0 : 680,0:w]
+    UpperAndLower_Cut2 = re_img[0 : 680,0:w]
     img = cv2.resize(UpperAndLower_Cut2,(1234,340))
     cv2.imwrite("box/img1.png",img)
     return img
@@ -31,7 +31,7 @@ def scan_boxnumber(image):
         # print( x,y,w,h)
         if w>550 and h>60 :
             if w<610 and h<90 :
-
+                # print("1")
                 idx+=1
                 new_img=image[y:y+h,x:x+w]
                 # cv2.imwrite("number/img" + '.png', new_img)
@@ -51,6 +51,15 @@ def scan_number(image):
                 new_img=image[y:y+h,x:x+w]
                 arrayImage_num.append(new_img)
     return arrayImage_num
+
+def cut_underNum(image):
+    (thresh, Img_First) = cv2.threshold(image, 140, 255, cv2.THRESH_BINARY)
+
+
+    w,h = Img_First.shape
+    # print(w,h) 
+    UpperAndLower_Cut2 = Img_First[0 : 63,0:h]
+    return UpperAndLower_Cut2
 
 def scan_detail(image):
     array_cut=[]
@@ -324,6 +333,11 @@ def scan_function(file_name):
     scan_function2(cut)
     scanbox=scan_boxnumber(cut)
     number = scan_number(scanbox)
+    
+    if number == []:
+      
+        scanbox2 = cut_underNum(scanbox)
+        number = scan_number(scanbox2)
     frame = scan_detail(number)
     black = reblack(frame)
     temp = tem_size(black)
