@@ -157,11 +157,29 @@ class Toplevel1:
     def num(self):
         
         # self.out_image()
+        # num_test.clear()
         num_test = nb.run_example()
         
         score_test = nb.run_score()
 
-        
+        self.Text1.delete('0', tk.END)
+        self.Text1_14.delete('0', tk.END)
+        self.Text1_15.delete('0', tk.END)
+        self.Text1_16.delete('0', tk.END)
+        self.Text1_17.delete('0', tk.END)
+        self.Text1_18.delete('0', tk.END)
+        self.Text1_19.delete('0', tk.END)
+        self.Text1_20.delete('0', tk.END)
+        self.Text1_21.delete('0', tk.END)
+        self.Text1_22.delete('0', tk.END)
+        self.Text1_23.delete('0', tk.END)
+        self.Text1_24.delete('0', tk.END)
+        self.Text1_25.delete('0', tk.END)
+        self.Text1_26.delete('0', tk.END)
+        self.Text1_27.delete('0', tk.END)
+        self.Text1_28.delete('0', tk.END)
+
+        # print(num_test)
         if len(num_test) == 13:
                 # self.videopanel1.configure(image=num_test[0])
  
