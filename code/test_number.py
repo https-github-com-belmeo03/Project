@@ -102,7 +102,7 @@ def run_score():
 	# print(img2)
 	
 	
-	model2 = load_model('final_model4.h5py')
+	model2 = load_model('final_model3.h5py')
 
 	# # # predict the class
 	
@@ -117,6 +117,10 @@ def run_score():
 	return count_score
 def csv_file(score,number):
 	# array_number = []
+	# print(score[1])
+	# if score[2]!= None and number[0] != None :
+		# print(score)
+
 	with open("code3.csv", "a") as f:
 		# fieldnames = ['score','number']
 		# writer = csv.DictWriter(f, lineterminator='\n')

@@ -6,7 +6,7 @@ import fuction_image as fmat
 def frame_cap():
 
 	cam = cv2.VideoCapture(0)
-	cv2.namedWindow("test")
+	# cv2.namedWindow("test")
 	img_counter = 0
 	cam.set(3,1080)
 	cam.set(4,800)
@@ -21,7 +21,7 @@ def frame_cap():
 
 			cv2.line(fr, (290, 0), (290, 800), (255, 0, 0), 2)
 			cv2.line(fr, (335, 0), (335, 800), (0, 255, 0), 2)
-			cv2.imshow("test", fr)
+			# cv2.imshow("test", fr)
 
 			gray1 = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 			th1 = cv2.adaptiveThreshold(gray1, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 115, 40)
@@ -34,7 +34,7 @@ def frame_cap():
 
 			if k%256 == 27:
 					# ESC pressed
-					print("Escape hit, closing...")
+					# print("Escape hit, closing...")
 					break
 
 
@@ -45,13 +45,14 @@ def frame_cap():
 					gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 					th = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 115, 40)
 					#Imgcut = th[220:260, 290:335]
+					
 					fmat.Process_paper(th)
-					cv2.imwrite("BinaryS21.png", th)
+					# cv2.imwrite("BinaryS21.png", th)
 					cv2.imshow('Adaptive threshold', th)
 					#print("{} written!".format(img_name))
 					img_counter += 1
 					
-					# break
+					break
 			elif k%256 == ord('q'):
 				    
 					break

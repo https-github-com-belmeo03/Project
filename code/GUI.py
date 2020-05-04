@@ -156,8 +156,9 @@ class Toplevel1:
         
     def num(self):
         
-        self.out_image()
+        # self.out_image()
         num_test = nb.run_example()
+        
         score_test = nb.run_score()
 
         
@@ -258,13 +259,16 @@ class Toplevel1:
         s1 = self.Text1_26.get()
         s2 = self.Text1_27.get()
         s3 = self.Text1_28.get()
+        
+       
 
         array_editScore.append(s1)
         array_editScore.append(s2)
         array_editScore.append(s3)
-
-        nb.csv_file(array_editScore,array_edit)
-
+        if array_editScore != ['','',''] and array_edit != ['', '', '', '', '', '', '', '', '', '', '', '', '']:
+                # print("1")
+                nb.csv_file(array_editScore,array_edit)
+        # print((array_edit))
         
         
                 
