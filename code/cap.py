@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 import fuction_image as fmat
+import scan as sc
+# import test_number as nb
 
 
 def frame_cap():
@@ -39,6 +41,7 @@ def frame_cap():
 
 
 			elif k%256 == ord('z'):
+					bug =  1
 					img_name = "opencv_frame_{}.png"
 					cv2.imwrite(img_name, frame)
 					img = cv2.imread(img_name)
@@ -47,6 +50,8 @@ def frame_cap():
 					#Imgcut = th[220:260, 290:335]
 					
 					fmat.Process_paper(th)
+					sc.clear_bug()
+					sc.clear_bug2()
 					# cv2.imwrite("BinaryS21.png", th)
 					cv2.imshow('Adaptive threshold', th)
 					#print("{} written!".format(img_name))

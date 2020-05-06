@@ -308,13 +308,15 @@ def scan_function2(image):
     temp=scan_sizeScore(black)
     check2 = check_scan(temp)
     setScore(check2)
-
+def clear_bug():
+    img_score.pop(0)
+    # print(img2[0])
 def getScore():
     return img_score[0]   
 
 def getscan_function2():
     temp = temp=scan_sizeScore(getScore())
-    
+    # temp.clear()
     return temp
 
 
@@ -323,6 +325,9 @@ def getscan_function2():
 img2 = []   
 
 def setimgNumberscan(img):
+    # if img == 1 :
+    #     img.clear()
+
     img2.clear()
     img2.append(img)
 
@@ -345,12 +350,16 @@ def scan_function(file_name):
     setimgNumberscan(check)
     return check
 
+def clear_bug2():
+    img2.pop(0)
 def getimgNumberscan():
+    # print(img2[0])
+
     return img2[0]
 
 def getscan_function():
     temp_size = tem_size(getimgNumberscan())
-    
+    # print(temp_size)
     return temp_size
 
 # scan_function()

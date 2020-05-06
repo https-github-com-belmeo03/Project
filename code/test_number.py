@@ -6,15 +6,9 @@ import fuction_image as fmate
 import scan as sc
 import cv2
 import csv
-# import input_image as ing
-# load and prepare the image
+
 plt.rcParams['image.cmap'] = 'gray'
-# def input_image():
-# 	image_array=[]
-# 	for i in range(0,13,+1):
-# 			image = cv2.imread("temp/img"+str(i)+'.png') 
-# 			image_array.append(image)
-# 	return image_array
+
 
 
 
@@ -56,15 +50,16 @@ def run_example():
 	model = load_model('final_model3.h5py')
 
 	# # # predict the class
-	
+	# count_number.clear()
 	for i in range (0,img.__len__(),+1):
 		digit = model.predict_classes(img[i])
 		# print(digit)
-	
+		
 		count_number.append(int(digit))
 	
 	# saveCSV(count_number)
-	
+	# img.clear()
+	# print(img)
 	return count_number
 
 def load_score(filename):
@@ -91,15 +86,15 @@ def load_score(filename):
 		array_testScore.append(img4)
 	return array_testScore
 
+
 def run_score():
 	count_score=[]
-	# load the image
-	# model = load_model('final_model2.h5py')
+	
 	try:
+		
 		img2 = load_image(sc.getscan_function2())
 	except:
 		img2 = load_score(fmate.Process_score2())
-	# print(img2)
 	
 	
 	model2 = load_model('final_model3.h5py')
@@ -108,35 +103,28 @@ def run_score():
 	
 	for j in range (0,img2.__len__(),+1):
 		digit2 = model2.predict_classes(img2[j])
-		# print(digit2)
-		# print(j)
+		
 	
 		count_score.append(int(digit2))
-	
-	# saveCSV(count_score)
+
 	return count_score
+
+
+
 def csv_file(score,number):
-	# array_number = []
-	# print(score[1])
-	# if score[2]!= None and number[0] != None :
-		# print(score)
+
 
 	with open("code3.csv", "a") as f:
-		# fieldnames = ['score','number']
-		# writer = csv.DictWriter(f, lineterminator='\n')
+	
 		writer = csv.writer(f,lineterminator='\n')
-		# writer.writeheader()
-		# for row in writer
+	
 		writer.writerow([score,number])
 
 
-	# print(array_number)
 
 
-def saveCSV(data):
-	file = open("code2.csv", "w")
-	for i_r in range(0,data.__len__(),+1):
- 		file.write(str(data[i_r])+',')
+
+
 
 
 

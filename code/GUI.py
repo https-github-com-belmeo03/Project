@@ -232,6 +232,9 @@ class Toplevel1:
                 #         fmate.Process_paper(filename.name)
                 # except:
                 sc.scan_function(filename.name)
+                # filename.name
+                # filename.remove(filename.name)
+                # print(filename)
                 self.capture()
     def cap_img(self):
 
