@@ -309,8 +309,9 @@ def scan_function2(image):
     check2 = check_scan(temp)
     setScore(check2)
 def clear_bug():
-    img_score.pop(0)
-    # print(img2[0])
+    if img_score != []:
+        img_score.pop(0)
+    # print(img_score)
 def getScore():
     return img_score[0]   
 
@@ -351,7 +352,8 @@ def scan_function(file_name):
     return check
 
 def clear_bug2():
-    img2.pop(0)
+    if img2 != []:
+        img2.pop(0)
 def getimgNumberscan():
     # print(img2[0])
 
