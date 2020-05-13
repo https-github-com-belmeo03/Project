@@ -27,6 +27,8 @@ except ImportError:
 import GUI_support
 
 from tkinter import filedialog
+from tkinter import messagebox
+
 from PIL import ImageTk,Image
 import PIL
 
@@ -219,6 +221,18 @@ class Toplevel1:
                 self.Text1_28.insert(tk.END,score_test[1])
         # print(test)
 #     def test(img):
+    def alert_info(self,data):
+        if data == 1 :
+                messagebox.showinfo( "ข้อผิดพลาด", "ไม่สามารถอ่านไฟล์ได้")
+
+    def alert_info2():
+        
+        messagebox.showinfo( "ข้อผิดพลาด", "ไม่สามารถอ่านไฟล์ได้")
+
+        # elif data == 2:
+
+        # print(data)
+
         
 
 
@@ -228,14 +242,17 @@ class Toplevel1:
         if filename != None:
                 # print(filename.name)
                 # print(type(filename))
-                # try:
-                #         fmate.Process_paper(filename.name)
-                # except:
-                sc.scan_function(filename.name)
+                data = 1
+                try:
+                        sc.scan_function(filename.name)
+                        self.capture()
+                except:
+                        self.alert_info(data)
+                
                 # filename.name
                 # filename.remove(filename.name)
                 # print(filename)
-                self.capture()
+                
     def cap_img(self):
 
         cp.frame_cap()
