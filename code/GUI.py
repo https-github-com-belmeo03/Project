@@ -9,6 +9,7 @@ import sys
 import cv2
 import matplotlib.pyplot as plt
 import array as arr
+import os
 # import numpy as np
 # from io import BufferedReader
 
@@ -224,8 +225,11 @@ class Toplevel1:
     def alert_info(self,data):
         if data == 1 :
                 messagebox.showinfo( "ข้อผิดพลาด", "ไม่สามารถอ่านไฟล์ได้")
+        elif data == 2:
+                messagebox.showinfo( "ข้อผิดพลาด", "ไฟล์รูปภาพต้องเป็น '.jpg' ")
 
-    def alert_info2():
+
+    def alert_info2(self):
         
         messagebox.showinfo( "ข้อผิดพลาด", "ไม่สามารถอ่านไฟล์ได้")
 
@@ -237,21 +241,31 @@ class Toplevel1:
 
 
     def browse_file(self):
-       
-        filename = filedialog.askopenfile(mode="rb",title = "Select file",filetypes = (("files","*.jpg"),("all files","*.*")))
+        filetypes = (("files","*.jpg"),("all files","*.*"))
+
+        filename = filedialog.askopenfile(mode="rb",title = "Select file",filetypes = filetypes )
+        
         if filename != None:
-                # print(filename.name)
-                # print(type(filename))
-                data = 1
-                try:
-                        sc.scan_function(filename.name)
-                        self.capture()
-                except:
-                        self.alert_info(data)
                 
-                # filename.name
-                # filename.remove(filename.name)
-                # print(filename)
+                extension = os.path.splitext(filename.name)[1]
+                # print(extension)
+                data = 1
+                data2 = 2
+                # try:
+                if extension == ".jpg":
+                        try:
+                                sc.scan_function(filename.name)
+                                self.capture()
+                        except:
+                             self.alert_info(data)   
+                else:
+                        self.alert_info(data2)
+                
+
+                
+                
+                
+             
                 
     def cap_img(self):
 
@@ -338,7 +352,7 @@ class Toplevel1:
         top.configure(background="#d9d9d9")
 
         self.CButton = tk.Button(top)
-        self.CButton.place(relx=0.864, rely=0.097, height=34, width=77)
+        self.CButton.place(relx=0.864, rely=0.097, height=34, width=67)
         self.CButton.configure(activebackground="#ececec")
         self.CButton.configure(activeforeground="#000000")
         self.CButton.configure(background="#d9d9d9")
@@ -364,7 +378,7 @@ class Toplevel1:
         # self.CapButton.configure(command=lambda:cm.frame_camera())
 
         self.bButton = tk.Button(top)
-        self.bButton.place(relx=0.864, rely=0.295, height=34, width=77)
+        self.bButton.place(relx=0.864, rely=0.295, height=34, width=67)
         self.bButton.configure(activebackground="#ececec")
         self.bButton.configure(activeforeground="#000000")
         self.bButton.configure(background="#d9d9d9")

@@ -6,6 +6,7 @@ import fuction_image as fmate
 import scan as sc
 import cv2
 import csv
+import re
 
 plt.rcParams['image.cmap'] = 'gray'
 
@@ -106,19 +107,36 @@ def run_score():
 		
 	
 		count_score.append(int(digit2))
-
+		# print(count_score)
 	return count_score
 
-
+def convert(list): 
+      
+    # Converting integer list to string list 
+    # and joining the list using join() 
+    res = int("".join(map(str, list))) 
+      
+    return res 
 
 def csv_file(score,number):
+
+
+	convert_number = convert(number)
+	convert_score = convert(score)
+
+	# for i in score:
+	# 	print(i, end="") 
+	
+
+	# m = re.sub('[a-zA-Z_0-9]+', '',score)
+	# print(m)
 
 
 	with open("code3.csv", "a") as f:
 	
 		writer = csv.writer(f,lineterminator='\n')
 	
-		writer.writerow([score,number])
+		writer.writerow((convert_number,convert_score))
 
 
 
