@@ -12,9 +12,9 @@ plt.rcParams['image.cmap'] = 'gray'
 
 
 
-
+# load the image number
 def load_image(filename):
-	# load the image
+	
 	
 	
 	
@@ -27,7 +27,7 @@ def load_image(filename):
 		img = cv2.resize(Img_First,(28,28))
 		
 	
-		# print(i)
+		
 
 				
 		img4 = img.reshape(1, 28, 28, 1)
@@ -58,36 +58,27 @@ def run_example():
 		
 		count_number.append(int(digit))
 	
-	# saveCSV(count_number)
-	# img.clear()
-	# print(img)
+
 	return count_number
 
+
+
+
+# load the image score
 def load_score(filename):
-	# load the image
-	
-	
-	
 	array_testScore=[]
-	# array_testBi=[]
 	
 	for i in range (0,filename.__len__(),+1):
 		
 		
 		(thresh, Img_First) = cv2.threshold(filename[i], 140, 255, cv2.THRESH_BINARY)
-		img = cv2.resize(Img_First,(28,28))
-		
-		
-		
-		# print(i)
-
-				
+		img = cv2.resize(Img_First,(28,28))	
 		img4 = img.reshape(1, 28, 28, 1)
 		
 		array_testScore.append(img4)
 	return array_testScore
 
-
+# load an image and predict the class
 def run_score():
 	count_score=[]
 	
@@ -110,29 +101,21 @@ def run_score():
 		# print(count_score)
 	return count_score
 
+#ลบอักษรพิเศษ
 def convert(list): 
       
-    # Converting integer list to string list 
-    # and joining the list using join() 
+ 
     res = int("".join(map(str, list))) 
       
     return res 
 
+# บันทึกไฟล์ .csv
 def csv_file(score,number):
 
 
 	convert_number = convert(number)
 	convert_score = convert(score)
-
-	# for i in score:
-	# 	print(i, end="") 
-	
-
-	# m = re.sub('[a-zA-Z_0-9]+', '',score)
-	# print(m)
-
-
-	with open("code3.csv", "a") as f:
+	with open("csv/code3.csv", "a") as f:
 	
 		writer = csv.writer(f,lineterminator='\n')
 	

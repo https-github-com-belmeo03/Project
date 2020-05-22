@@ -70,31 +70,23 @@ def destroy_Toplevel1():
     w.destroy()
     w = None
 
-# def eventCapButton(self):
-#         print("eventCapButton")
-#         self.videopanel.pack()
-#         self.capImg = ImageTk.PhotoImage(Image.open("img1.png"))
-#         self.videopanel.configure(image=self.capImg)
+
     
 
 class Toplevel1:
+        # แสดงภาพ
     def capture(self):
         # fmate.Process_paper()
         self.Canvas_image()
 
 
     def Canvas_image(self):
-        # image_show= fmate.Process_paper()
-        #     print(1)
-        # self.TFrame1_1.pack()
-        # self.videopanel.pack()
+      
         self.my_img=ImageTk.PhotoImage(Image.open("box/img1.png"))
   
 
         self.videopanel.configure(image=self.my_img)
-        # self.videopanel1.configure(image=image_show[0])
-        
-        # self.num()
+       
         self.out_image()
     
     def out_image(self):
@@ -155,12 +147,11 @@ class Toplevel1:
        
 
 
-        # else:
-        
+       
+        # แสดงค่าตัวเลขจาการทำนาย
     def num(self):
         
-        # self.out_image()
-        # num_test.clear()
+       
         num_test = nb.run_example()
         
         score_test = nb.run_score()
@@ -220,8 +211,7 @@ class Toplevel1:
         else:
                 self.Text1_27.insert(tk.END,score_test[0])
                 self.Text1_28.insert(tk.END,score_test[1])
-        # print(test)
-#     def test(img):
+       
     def alert_info(self,data):
         if data == 1 :
                 messagebox.showinfo( "ข้อผิดพลาด", "ไม่สามารถอ่านไฟล์ได้")
@@ -233,13 +223,11 @@ class Toplevel1:
         
         messagebox.showinfo( "ข้อผิดพลาด", "ไม่สามารถอ่านไฟล์ได้")
 
-        # elif data == 2:
-
-        # print(data)
+       
 
         
 
-
+        # เรียกใช้ไฟล์ที่ได้จากการสแกน
     def browse_file(self):
         filetypes = (("files","*.jpg"),("all files","*.*"))
 
@@ -266,13 +254,13 @@ class Toplevel1:
                 
                 
              
-                
+        # เปิดกล้อง        
     def cap_img(self):
 
         cp.frame_cap()
         self.capture()
         
-
+        # แก้ไขตัวเลข
     def edit_number(self):
         # num_test = nb.run_example()
         array_edit =[]

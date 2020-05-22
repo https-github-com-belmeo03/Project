@@ -13,9 +13,7 @@ from keras.optimizers import SGD
 def load_dataset():
 	# load dataset
 	(trainX, trainY), (testX, testY) = mnist.load_data()
-    # plt.imshow(trainX[0])
-    # img_width, img_height = trainX[0].shape
-    # print(img_width, img_height)
+   
 	# reshape dataset to have a single channel
 	trainX = trainX.reshape((trainX.shape[0], 28, 28, 1))
 	testX = testX.reshape((testX.shape[0], 28, 28, 1))
@@ -57,14 +55,14 @@ def run_test_harness():
 	trainX, trainY, testX, testY = load_dataset()
    
 	# prepare pixel data
-	trainX, testX = prep_pixels(trainX, testX)  0
+	trainX, testX = prep_pixels(trainX, testX)  
     
 	# define model
 	model = define_model()
 	# fit model
 	model.fit(trainX, trainY, epochs=1000, batch_size=256, verbose=1,validation_data=(testX, testY))
 	# save model
-	model.save('final_model4.h5py')
+	model.save('final_model6.h5py')
   
 # entry point, run the test harness
 run_test_harness()

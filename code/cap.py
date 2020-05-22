@@ -5,7 +5,7 @@ import scan as sc
 from GUI import Toplevel1 as tl
 # import test_number as nb
 
-
+#แสดงกล้อง
 def frame_cap():
 
 	cam = cv2.VideoCapture(0)
@@ -48,17 +48,14 @@ def frame_cap():
 					img = cv2.imread(img_name)
 					gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 					th = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 115, 40)
-					#Imgcut = th[220:260, 290:335]
+					
 					try:
 						fmat.Process_paper(th)
 						sc.clear_bug()
 						sc.clear_bug2()
 					except:
 						tl.alert_info2()
-						# GUI.aler
-					# cv2.imwrite("BinaryS21.png", th)
-					# cv2.imshow('Adaptive threshold', th)
-					#print("{} written!".format(img_name))
+				
 					img_counter += 1
 					
 					break
